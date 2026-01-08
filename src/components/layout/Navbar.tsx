@@ -21,7 +21,7 @@ export default function Navbar() {
         <a className="transition hover:text-orange-500" href="#works">
           Works
         </a>
-        <a className="transition hover:text-orange-500" href="#contact">
+        <a className="transition hover:text-orange-500" href="/contact">
           Contact
         </a>
       </nav>
