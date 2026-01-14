@@ -1,5 +1,8 @@
 "use client";
 
+import { motion } from "framer-motion";
+import { fadeInUpItem, staggerContainer } from "@/lib/animation-templates";
+
 const reviews = [
   {
     id: "01",
@@ -48,7 +51,13 @@ const marqueeItems = [...reviews, ...reviews];
 
 export default function ClientReviewSection() {
   return (
-    <section className="mt-16 rounded-[34px] px-6 py-16 sm:px-10 lg:px-16">
+    <motion.section
+      className="mt-16 rounded-[34px] px-6 py-16 sm:px-10 lg:px-16"
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.25 }}
+    >
       <style>{`
         @keyframes marquee-scroll {
           0% { transform: translateX(0%); }
@@ -87,24 +96,34 @@ export default function ClientReviewSection() {
       `}</style>
 
       <div className="mx-auto max-w-7xl">
-        <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-zinc-400">
+        <motion.div className="text-center" variants={fadeInUpItem}>
+          <motion.p
+            variants={fadeInUpItem}
+            className="text-xs font-semibold uppercase tracking-[0.4em] text-zinc-400"
+          >
             Client Reviews
-          </p>
-          <h2 className="font-display mt-4 text-3xl font-semibold text-ink sm:text-4xl lg:text-5xl">
+          </motion.p>
+          <motion.h2
+            variants={fadeInUpItem}
+            className="font-display mt-4 text-3xl font-semibold text-ink sm:text-4xl lg:text-5xl"
+          >
             Kind words from teams we ship with
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-ink-muted sm:text-base">
+          </motion.h2>
+          <motion.p
+            variants={fadeInUpItem}
+            className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-ink-muted sm:text-base"
+          >
             Feedback from partners who trusted me with strategy, visual systems,
             and full-stack execution.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         <div className="mt-12 space-y-6">
           {["normal", "reverse"].map((direction) => (
-            <div
+            <motion.div
               key={direction}
               className="marquee-row relative overflow-hidden rounded-[28px] border border-zinc-100 "
+              variants={fadeInUpItem}
             >
               <div
                 className={`marquee-track flex min-w-[200%] gap-6 px-4 py-6 ${
@@ -148,10 +167,10 @@ export default function ClientReviewSection() {
                   </article>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

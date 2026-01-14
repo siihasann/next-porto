@@ -1,4 +1,13 @@
+"use client";
+
+import { motion } from "framer-motion";
+import {
+  cardHover,
+  fadeInUpItem,
+  staggerContainer,
+} from "@/lib/animation-templates";
 import ExpandableButton from "../ui/ExpandableButton";
+import HighlightButton from "../ui/HighlightButton";
 
 const heroContent = {
   badge: "Portfolio 2024",
@@ -36,38 +45,60 @@ const heroHighlights = [
 export default function HeroSection() {
   return (
     <section className="surface-contrast rounded-[34px] py-14 text-center text-white shadow-[0_30px_60px_-40px_rgba(0,0,0,0.65)] sm:px-10 lg:px-16">
-      <div className="mx-auto flex max-w-7xl flex-col items-center gap-6">
-        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-300">
+      <motion.div
+        className="mx-auto flex max-w-7xl flex-col items-center gap-6"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.4 }}
+      >
+        <motion.p
+          variants={fadeInUpItem}
+          className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-300"
+        >
           {heroContent.badge}
-        </p>
-        <h1 className="font-display text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+        </motion.p>
+        <motion.h1
+          variants={fadeInUpItem}
+          className="font-display text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
+        >
           {heroContent.title}
           <br />
           {heroContent.subtitle}
-        </h1>
-        <p className="max-w-2xl text-sm leading-7 text-zinc-300 sm:text-base">
+        </motion.h1>
+        <motion.p
+          variants={fadeInUpItem}
+          className="max-w-2xl text-sm leading-7 text-zinc-300 sm:text-base"
+        >
           {heroContent.description}
-        </p>
-        <button className="btn-primary group mt-2 inline-flex items-center gap-3 rounded-full px-6 py-3 text-sm font-semibold">
-          {heroContent.cta.label}
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-orange-500 transition group-hover:translate-x-1">
-            {heroContent.cta.icon}
-          </span>
-        </button>
-      </div>
+        </motion.p>
+        <motion.div variants={fadeInUpItem}>
+          <HighlightButton text="Contact Me" variant="orange" />
+        </motion.div>
+      </motion.div>
 
-      <div className="mt-12 grid gap-6 text-left sm:grid-cols-2">
+      <motion.div
+        className="mt-12 grid gap-6 text-left sm:grid-cols-2"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }}
+      >
         {heroHighlights.map((highlight, index) => (
-          <article
+          <motion.article
             key={highlight.id}
+            custom={index}
+            variants={fadeInUpItem}
+            // whileHover="hover"
             className={`group relative h-96 overflow-hidden p-6 shadow-[0_20px_45px_-25px_rgba(0,0,0,0.9)] ${
               index === 0
                 ? "rounded-3xl bg-[linear-gradient(135deg,rgba(20,20,20,0.9),rgba(0,0,0,0.7))]"
                 : "rounded-[24px] bg-[linear-gradient(135deg,rgba(18,18,18,0.95),rgba(8,8,8,0.95))]"
             }`}
           >
-            <div
+            <motion.div
               className="absolute inset-0 opacity-70"
+              variants={fadeInUpItem}
               style={{
                 backgroundImage: `${highlight.overlay}, url('${highlight.image}')`,
                 backgroundSize: "cover",
@@ -85,9 +116,9 @@ export default function HeroSection() {
                 <ExpandableButton />
               </div>
             </div>
-          </article>
+          </motion.article>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }

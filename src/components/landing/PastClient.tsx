@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { fadeInUpItem, staggerContainer } from "@/lib/animation-templates";
 
 interface Client {
   id: number;
@@ -51,23 +53,30 @@ const PastClientsSection: React.FC = () => {
   ];
 
   return (
-    <section className="min-h-screen py-24">
+    <motion.section
+      className="min-h-screen py-24"
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+    >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-16">
+        <motion.div className="mb-16" variants={fadeInUpItem}>
           <h2 className="text-lg tracking-[0.45em] text-gray-400 font-medium mb-4">
             PAST CLIENT
           </h2>
-        </div>
+        </motion.div>
 
         {/* Clients List */}
         <div className="space-y-0">
           {clients.map((client) => (
-            <div
+            <motion.div
               key={client.id}
               onMouseEnter={() => setHoveredClient(client.id)}
               onMouseLeave={() => setHoveredClient(null)}
               className="relative border-b border-gray-400 py-14 cursor-pointer group"
+              variants={fadeInUpItem}
             >
               <div className="grid grid-cols-12 gap-8 items-start">
                 {/* Number */}
@@ -143,7 +152,7 @@ const PastClientsSection: React.FC = () => {
                   ${hoveredClient === client.id ? "w-full" : "w-0"}
                 `}
               />
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -165,7 +174,7 @@ const PastClientsSection: React.FC = () => {
           <span className="text-sm font-medium">Made in Framer</span>
         </div>
       </div> */}
-    </section>
+    </motion.section>
   );
 };
 

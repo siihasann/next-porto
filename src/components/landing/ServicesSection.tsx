@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import { Code2, LayoutGrid, Megaphone, Paintbrush } from "lucide-react";
+import { motion } from "framer-motion";
 import Carousel from "../Carousel";
+import { fadeInUpItem, staggerContainer } from "@/lib/animation-templates";
 
 const services = [
   { label: "Branding Design", Icon: Paintbrush },
@@ -48,30 +50,49 @@ export default function ServicesSection() {
   };
 
   return (
-    <section className="surface-contrast mt-16 rounded-[34px] py-14 text-white shadow-[0_30px_60px_-40px_rgba(0,0,0,0.65)] sm:px-10 lg:px-16">
-      <div className="mx-auto flex max-w-7xl flex-col items-center gap-8 text-center">
-        <p className="text-lg font-semibold uppercase tracking-[0.35em] text-zinc-400">
+    <motion.section
+      className="surface-contrast mt-16 rounded-[34px] py-14 text-white shadow-[0_30px_60px_-40px_rgba(0,0,0,0.65)] sm:px-10 lg:px-16"
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+    >
+      <motion.div
+        className="mx-auto flex max-w-7xl flex-col items-center gap-8 text-center"
+        variants={fadeInUpItem}
+      >
+        <motion.p
+          className="text-lg font-semibold uppercase tracking-[0.35em] text-zinc-400"
+          variants={fadeInUpItem}
+        >
           What I&apos;m Doing
-        </p>
-        <div className="font-display text-3xl font-medium uppercase tracking-[0.08em] sm:text-4xl lg:text-7xl">
+        </motion.p>
+        <motion.div
+          className="font-display text-3xl font-medium uppercase tracking-[0.08em] sm:text-4xl lg:text-7xl"
+          variants={staggerContainer}
+        >
           {services.map((service) => (
-            <div
+            <motion.div
               key={service.label}
+              variants={fadeInUpItem}
               className="group mt-8 flex flex-wrap items-center justify-center gap-4"
             >
-              <span className="pointer-events-none flex h-8 w-8 lg:h-16 lg:w-16 items-center justify-center rounded-full border border-white/20 text-orange-200 opacity-0 transition duration-300 group-hover:translate-x-1 group-hover:opacity-100">
+              <span className="pointer-events-none flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-orange-200 opacity-0 transition duration-300 group-hover:translate-x-1 group-hover:opacity-100 lg:h-16 lg:w-16">
                 <service.Icon className="h-4 w-4" aria-hidden="true" />
               </span>
               <span className="transition duration-300 group-hover:text-orange-200">
                 {service.label}
               </span>
               <span className="h-px w-0 bg-white/40 transition-all duration-300 group-hover:w-10" />
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
-      <div className="mt-12 flex items-center justify-between text-lg uppercase tracking-[0.35em] text-zinc-400">
+      <motion.div
+        className="mt-12 flex items-center justify-between text-lg uppercase tracking-[0.35em] text-zinc-400"
+        variants={fadeInUpItem}
+      >
         <span>Selected Project</span>
         <div className="flex items-center gap-3">
           <button
@@ -89,12 +110,21 @@ export default function ServicesSection() {
             →
           </button>
         </div>
-      </div>
+      </motion.div>
 
-      <article className="mt-6 overflow-hidden rounded-[28px] bg-[linear-gradient(135deg,#0a0a0a,rgba(15,15,15,0.9))] shadow-[0_30px_60px_-45px_rgba(0,0,0,0.95)]">
-        <div style={{ height: "600px", position: "relative" }}>
+      <motion.article
+        className="mt-6 overflow-hidden rounded-[28px] bg-[linear-gradient(135deg,#0a0a0a,rgba(15,15,15,0.9))] shadow-[0_30px_60px_-45px_rgba(0,0,0,0.95)]"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }}
+      >
+        <motion.div
+          variants={fadeInUpItem}
+          style={{ height: "600px", position: "relative" }}
+        >
           <Carousel baseWidth={1230} baseHeight={600} autoplay loop />
-        </div>
+        </motion.div>
         {/* <div className="overflow-hidden">
           <div
             className="flex transition-transform duration-700 ease-out"
@@ -159,7 +189,7 @@ export default function ServicesSection() {
             ))}
           </div>
         </div> */}
-      </article>
-    </section>
+      </motion.article>
+    </motion.section>
   );
 }

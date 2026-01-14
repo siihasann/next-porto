@@ -25,7 +25,7 @@ const HighlightButton: React.FC<HighlightButtonProps> = ({
   const variants = {
     orange: {
       bg: "bg-orange-500",
-      hoverBg: "hover:bg-orange-600",
+      hoverBg: "hover:bg-orange-500",
       text: "text-white",
       highlightBg: "bg-white",
       highlightText: "text-orange-500",
