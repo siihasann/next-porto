@@ -15,7 +15,7 @@ export default function AboutSection() {
       id="about"
       className=" max-w-7xl mx-auto mt-16 w-full grid grid-cols-12 items-start py-12 text-ink"
     >
-      <div className="col-span-12 flex min-w-0 flex-col gap-10 lg:col-span-4">
+      <div className="col-span-12 flex min-w-0 flex-col gap-10 lg:col-span-5">
         <p className="text-lg uppercase tracking-[0.45em] text-ink-muted">
           {aboutContent.label}
         </p>
@@ -27,7 +27,7 @@ export default function AboutSection() {
           />
         </div>
       </div>
-      <div className="col-span-12 min-w-0 font-display text-3xl font-medium leading-[1.35] text-ink sm:text-4xl lg:col-span-8 lg:text-3xl">
+      <div className="col-span-12 min-w-0 font-display text-3xl font-medium leading-[1.35] text-ink sm:text-4xl lg:col-span-7 lg:text-3xl">
         {aboutContent.headline}
       </div>
     </section>
