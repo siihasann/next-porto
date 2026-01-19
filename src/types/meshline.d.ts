@@ -1,4 +1,5 @@
 // src/types/meshline.d.ts
+import type { ThreeElement } from "@react-three/fiber";
 import * as THREE from "three";
 
 declare module "meshline" {
@@ -12,12 +13,10 @@ declare module "meshline" {
   }
 }
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      meshLineGeometry: any;
-      meshLineMaterial: any;
-    }
+declare module "@react-three/fiber" {
+  interface ThreeElements {
+    meshLineGeometry: ThreeElement<typeof MeshLineGeometry>;
+    meshLineMaterial: ThreeElement<typeof MeshLineMaterial>;
   }
 }
 
