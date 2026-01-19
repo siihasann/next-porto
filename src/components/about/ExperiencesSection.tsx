@@ -8,6 +8,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Timeline } from "@/components/ui/timeline";
+import { fadeInUpItem, staggerContainer } from "@/lib/animation-templates";
 
 // Main Experience Section Component
 export function ExperiencesSection() {
@@ -163,8 +164,16 @@ export function ExperiencesSection() {
   }));
 
   return (
-    <div className="relative w-full overflow-clip">
-      <Timeline data={timelineData} />
-    </div>
+    <motion.section
+      className="relative w-full overflow-clip"
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+    >
+      <motion.div variants={fadeInUpItem}>
+        <Timeline data={timelineData} />
+      </motion.div>
+    </motion.section>
   );
 }

@@ -11,7 +11,7 @@ import HighlightButton from "../ui/HighlightButton";
 
 const heroContent = {
   badge: "Portfolio 2024",
-  title: "Hans Nadj",
+  title: "Jhon Doe",
   subtitle: "Full-Stack Developer",
   description:
     "I craft clean, bold visuals for brands and digital products. From art direction to UI systems, I make ideas feel tangible and confident.",

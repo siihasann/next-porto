@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope, Sora } from "next/font/google";
 import "./globals.css";
+import PageTransition from "@/components/PageTransition";
 
 const sora = Sora({
   variable: "--font-display",
@@ -25,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${sora.variable} ${manrope.variable} antialiased`}>
-        {children}
+        <PageTransition>{children}</PageTransition>
       </body>
     </html>
   );

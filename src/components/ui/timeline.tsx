@@ -98,10 +98,9 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           transition={{ duration: 0.6 }}
         >
           <div className="flex items-center gap-3 mb-4">
-            <Briefcase className="w-6 h-6 text-orange-500" />
-            <h2 className="text-lg uppercase tracking-[0.45em] text-neutral-600 dark:text-neutral-400">
-              EXPERIENCES
-            </h2>
+            <p className="text-base font-semibold uppercase tracking-[0.3em] text-ink-muted">
+              Experiences
+            </p>
           </div>
           <motion.div
             className="h-1 bg-gradient-to-r from-orange-500 via-orange-300 to-transparent rounded-full"

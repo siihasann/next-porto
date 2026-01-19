@@ -1,13 +1,21 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import SecondButton from "../ui/ExpandableButton";
 import HighlightButton from "../ui/HighlightButton";
+import { fadeInUpItem, staggerContainer } from "@/lib/animation-templates";
 
 const AboutHeroSection: React.FC = () => {
   return (
-    <section className="min-h-screen bg-gradient-to-br relative overflow-hidden">
+    <motion.section
+      className="min-h-screen bg-gradient-to-br relative overflow-hidden"
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.4 }}
+    >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_500px_at_50%_200px,#C9DAEA,transparent)]"></div>
@@ -17,7 +25,10 @@ const AboutHeroSection: React.FC = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[80vh]">
           {/* Left Image */}
           {/* Left Image */}
-          <div className="relative flex justify-center lg:justify-start">
+          <motion.div
+            className="relative flex justify-center lg:justify-start"
+            variants={fadeInUpItem}
+          >
             {/* Main Circle Image */}
             <div className="relative z-10">
               <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-2xl ring-8 ring-white">
@@ -144,11 +155,11 @@ const AboutHeroSection: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Content */}
-          <div className="space-y-8">
-            <div className="space-y-4">
+          <motion.div className="space-y-8" variants={fadeInUpItem}>
+            <motion.div className="space-y-4" variants={fadeInUpItem}>
               <p className="text-sm tracking-[0.3em] text-gray-500 uppercase font-light">
                 About Me
               </p>
@@ -157,15 +168,21 @@ const AboutHeroSection: React.FC = () => {
                 <br />
                 Designer
               </h1>
-            </div>
+            </motion.div>
 
-            <p className="text-lg lg:text-xl text-gray-600 leading-relaxed">
+            <motion.p
+              variants={fadeInUpItem}
+              className="text-lg lg:text-xl text-gray-600 leading-relaxed"
+            >
               Crafting digital experiences that inspire and engage. With over 8
               years of experience in design and development, I transform ideas
               into beautiful, functional products.
-            </p>
+            </motion.p>
 
-            <div className="grid grid-cols-3 gap-6 pt-4">
+            <motion.div
+              variants={fadeInUpItem}
+              className="grid grid-cols-3 gap-6 pt-4"
+            >
               <div className="space-y-2">
                 <div className="text-3xl lg:text-4xl font-bold text-gray-900">
                   8+
@@ -190,18 +207,21 @@ const AboutHeroSection: React.FC = () => {
                   Happy Clients
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="flex flex-wrap gap-4 pt-4">
+            <motion.div
+              variants={fadeInUpItem}
+              className="flex flex-wrap gap-4 pt-4"
+            >
               <HighlightButton text="Download CV" variant="orange" />
               <button className="border-2 border-gray-900 text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-gray-900 hover:text-white transition-all duration-300">
                 Contact Me
               </button>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
