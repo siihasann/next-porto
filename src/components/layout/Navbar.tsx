@@ -21,7 +21,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-99 mx-auto flex w-full items-center justify-center">
-      <nav className="glass-nav flex w-full flex-wrap items-center justify-center gap-6 px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] sm:gap-10">
+      <nav className="glass-nav flex w-full flex-wrap items-center justify-center gap-4 px-3 py-3 text-[10px] font-semibold uppercase tracking-[0.18em] sm:gap-8 sm:px-6 sm:text-xs sm:tracking-[0.2em] lg:gap-10">
         {leftItems.map((item) => (
           <Link
             key={item.href}
@@ -32,10 +32,10 @@ export default function Navbar() {
             {item.label}
           </Link>
         ))}
-        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-[0_10px_30px_-20px_rgba(0,0,0,0.5)]">
+        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-[0_10px_30px_-20px_rgba(0,0,0,0.5)] sm:h-12 sm:w-12">
           <svg
             aria-hidden="true"
-            className="h-6 w-6 text-orange-500"
+            className="h-5 w-5 text-orange-500 sm:h-6 sm:w-6"
             viewBox="0 0 24 24"
             fill="currentColor"
           >

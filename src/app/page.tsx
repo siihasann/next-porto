@@ -15,7 +15,7 @@ export default function Home() {
     <div className="min-h-screen">
       <Navbar />
       <motion.main
-        className="mx-auto w-full px-20 pb-16 pt-10"
+        className="mx-auto w-full px-4 pb-16 pt-8 sm:px-8 lg:px-20"
         variants={staggerContainer}
         initial="hidden"
         animate="visible"

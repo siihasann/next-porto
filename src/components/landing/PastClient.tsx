@@ -54,16 +54,16 @@ const PastClientsSection: React.FC = () => {
 
   return (
     <motion.section
-      className="min-h-screen py-24"
+      className="min-h-screen px-4 py-16 sm:px-6 sm:py-24"
       variants={staggerContainer}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="mx-auto max-w-7xl">
         {/* Header */}
         <motion.div className="mb-16" variants={fadeInUpItem}>
-          <h2 className="text-lg tracking-[0.45em] text-gray-400 font-medium mb-4">
+          <h2 className="mb-4 text-xs font-medium tracking-[0.35em] text-gray-400 sm:text-sm lg:text-lg">
             PAST CLIENT
           </h2>
         </motion.div>
@@ -75,42 +75,46 @@ const PastClientsSection: React.FC = () => {
               key={client.id}
               onMouseEnter={() => setHoveredClient(client.id)}
               onMouseLeave={() => setHoveredClient(null)}
-              className="relative border-b border-gray-400 py-14 cursor-pointer group"
+              className="group relative cursor-pointer border-b border-gray-400 py-10 sm:py-14"
               variants={fadeInUpItem}
             >
-              <div className="grid grid-cols-12 gap-8 items-start">
+              <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-12">
                 {/* Number */}
-                <div className="col-span-1">
-                  <span className="text-2xl text-gray-300 font-light">
+                <div className="md:col-span-1">
+                  <span className="text-xl font-light text-gray-300 sm:text-2xl">
                     {client.number}
                   </span>
                 </div>
 
                 {/* Image Container */}
-                <div className="col-span-5 pr-10">
+                <div className="md:col-span-5 md:pr-8 lg:pr-10">
                   <div
                     className={`
                       overflow-hidden rounded-2xl shadow-[0_24px_60px_-30px_rgba(0,0,0,0.6)]
                       transition-all duration-700 ease-out transform-gpu
                       ${
                         hoveredClient === client.id
-                          ? "opacity-100 scale-100"
-                          : "opacity-0 scale-95 pointer-events-none"
+                          ? "md:opacity-100 md:scale-100"
+                          : "md:opacity-0 md:scale-95 md:pointer-events-none"
                       }
+                      opacity-100 scale-100
                     `}
                   >
                     {client.image ? (
                       <img
                         src={client.image}
                         alt={client.name}
+                        loading="lazy"
+                        decoding="async"
                         className={`
-                          w-full h-auto object-cover rounded-2xl
+                          h-auto w-full rounded-2xl object-cover
                           transition-transform duration-700 ease-out
                           ${
                             hoveredClient === client.id
-                              ? "scale-105"
-                              : "scale-100"
+                              ? "md:scale-105"
+                              : "md:scale-100"
                           }
+                          md:scale-100
                         `}
                       />
                     ) : (
@@ -124,21 +128,22 @@ const PastClientsSection: React.FC = () => {
                 </div>
 
                 {/* Content */}
-                <div className="col-span-6">
+                <div className="md:col-span-6">
                   <h3
                     className={`
-                      text-5xl font-bold mb-6 tracking-wider
+                      mb-4 text-3xl font-bold tracking-wider sm:mb-6 sm:text-4xl lg:text-5xl
                       transition-colors duration-300
                       ${
                         hoveredClient === client.id
-                          ? "text-gray-900"
-                          : "text-gray-400"
+                          ? "md:text-gray-900"
+                          : "md:text-gray-400"
                       }
+                      text-gray-900 md:text-gray-400
                     `}
                   >
                     {client.name}
                   </h3>
-                  <p className="text-gray-600 text-lg leading-relaxed max-w-2xl">
+                  <p className="max-w-2xl text-sm leading-relaxed text-gray-600 sm:text-base lg:text-lg">
                     {client.description}
                   </p>
                 </div>

@@ -18,33 +18,35 @@ export default function AboutSection() {
   return (
     <motion.section
       id="about"
-      className="mx-auto mt-16 grid w-full max-w-7xl grid-cols-12 items-start py-12 text-ink"
+      className="mx-auto mt-14 grid w-full max-w-7xl grid-cols-12 items-start gap-8 px-4 py-10 text-ink sm:mt-16 sm:gap-10 sm:px-6 sm:py-12 lg:px-16"
       variants={staggerContainer}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
     >
-      <div className="col-span-12 flex min-w-0 flex-col gap-10 lg:col-span-5">
+      <div className="col-span-12 flex flex-col items-center gap-8 lg:col-span-5 lg:items-start">
         <motion.p
           variants={fadeInUpItem}
-          className="text-lg uppercase tracking-[0.45em] text-ink-muted"
+          className="text-xs uppercase tracking-[0.35em] text-ink-muted sm:text-sm lg:text-lg"
         >
           {aboutContent.label}
         </motion.p>
         <motion.div
           variants={fadeInUpItem}
-          className="relative aspect-square w-full max-w-[240px] rounded-full"
+          className="relative aspect-square w-full max-w-[220px] rounded-full"
         >
           <img
             src={aboutContent.image}
             alt={aboutContent.name}
+            loading="lazy"
+            decoding="async"
             className="absolute inset-2 h-[calc(100%-16px)] w-[calc(100%-16px)] rounded-full object-cover"
           />
         </motion.div>
       </div>
       <motion.div
         variants={fadeInUpItem}
-        className="col-span-12 min-w-0 font-display text-3xl font-medium leading-[1.35] text-ink sm:text-4xl lg:col-span-7 lg:text-3xl"
+        className="col-span-12 mx-auto w-full min-w-0 break-words px-2 text-center font-display text-base font-medium leading-7 text-ink sm:max-w-lg sm:px-0 sm:text-lg sm:leading-8 md:max-w-xl md:text-xl md:leading-9 lg:col-span-7 lg:max-w-2xl lg:text-left lg:text-3xl lg:leading-[1.4]"
       >
         {aboutContent.headline}
       </motion.div>

@@ -44,7 +44,7 @@ const heroHighlights = [
 
 export default function HeroSection() {
   return (
-    <section className="surface-contrast rounded-[34px] py-14 text-center text-white shadow-[0_30px_60px_-40px_rgba(0,0,0,0.65)] sm:px-10 lg:px-16">
+    <section className="surface-contrast rounded-[28px] px-4 py-12 text-center text-white shadow-[0_30px_60px_-40px_rgba(0,0,0,0.65)] sm:rounded-[34px] sm:px-10 lg:px-16">
       <motion.div
         className="mx-auto flex max-w-7xl flex-col items-center gap-6"
         variants={staggerContainer}
@@ -78,7 +78,7 @@ export default function HeroSection() {
       </motion.div>
 
       <motion.div
-        className="mt-12 grid gap-6 text-left sm:grid-cols-2"
+        className="mt-12 grid gap-5 text-left sm:grid-cols-2 sm:gap-6"
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
@@ -90,7 +90,7 @@ export default function HeroSection() {
             custom={index}
             variants={fadeInUpItem}
             // whileHover="hover"
-            className={`group relative h-96 overflow-hidden p-6 shadow-[0_20px_45px_-25px_rgba(0,0,0,0.9)] ${
+            className={`group relative h-72 overflow-hidden p-5 shadow-[0_20px_45px_-25px_rgba(0,0,0,0.9)] sm:h-80 sm:p-6 lg:h-96 ${
               index === 0
                 ? "rounded-3xl bg-[linear-gradient(135deg,rgba(20,20,20,0.9),rgba(0,0,0,0.7))]"
                 : "rounded-[24px] bg-[linear-gradient(135deg,rgba(18,18,18,0.95),rgba(8,8,8,0.95))]"
@@ -105,7 +105,7 @@ export default function HeroSection() {
                 backgroundPosition: "center",
               }}
             />
-            <div className="relative z-10 flex h-full flex-col justify-between gap-16">
+            <div className="relative z-10 flex h-full flex-col justify-between gap-10 sm:gap-16">
               <p className="text-xs uppercase tracking-[0.25em] text-zinc-300">
                 {highlight.eyebrow}
               </p>

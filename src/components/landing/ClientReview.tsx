@@ -52,7 +52,7 @@ const marqueeItems = [...reviews, ...reviews];
 export default function ClientReviewSection() {
   return (
     <motion.section
-      className="mt-16 rounded-[34px] px-6 py-16 sm:px-10 lg:px-16"
+      className="mt-16 rounded-[28px] px-4 py-12 sm:rounded-[34px] sm:px-10 sm:py-16 lg:px-16"
       variants={staggerContainer}
       initial="hidden"
       whileInView="visible"
@@ -99,13 +99,13 @@ export default function ClientReviewSection() {
         <motion.div className="text-center" variants={fadeInUpItem}>
           <motion.p
             variants={fadeInUpItem}
-            className="text-xs font-semibold uppercase tracking-[0.4em] text-zinc-400"
+            className="text-xs font-semibold uppercase tracking-[0.3em] text-zinc-400 sm:tracking-[0.4em]"
           >
             Client Reviews
           </motion.p>
           <motion.h2
             variants={fadeInUpItem}
-            className="font-display mt-4 text-3xl font-semibold text-ink sm:text-4xl lg:text-5xl"
+            className="font-display mt-4 text-2xl font-semibold text-ink sm:text-4xl lg:text-5xl"
           >
             Kind words from teams we ship with
           </motion.h2>
@@ -118,7 +118,7 @@ export default function ClientReviewSection() {
           </motion.p>
         </motion.div>
 
-        <div className="mt-12 space-y-6">
+        <div className="mt-10 space-y-6 sm:mt-12">
           {["normal", "reverse"].map((direction) => (
             <motion.div
               key={direction}
@@ -126,20 +126,22 @@ export default function ClientReviewSection() {
               variants={fadeInUpItem}
             >
               <div
-                className={`marquee-track flex min-w-[200%] gap-6 px-4 py-6 ${
+                className={`marquee-track flex min-w-[200%] gap-4 px-3 py-4 sm:gap-6 sm:px-4 sm:py-6 ${
                   direction === "reverse" ? "marquee-reverse" : ""
                 }`}
               >
                 {marqueeItems.map((card, index) => (
                   <article
                     key={`${card.id}-${index}`}
-                    className="w-72 shrink-0 rounded-2xl border border-zinc-100 p-5 shadow-[0_18px_40px_-30px_rgba(15,23,42,0.5)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_45px_-26px_rgba(15,23,42,0.6)]"
+                    className="w-64 shrink-0 rounded-2xl border border-zinc-100 p-4 shadow-[0_18px_40px_-30px_rgba(15,23,42,0.5)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_45px_-26px_rgba(15,23,42,0.6)] sm:w-72 sm:p-5"
                   >
                     <div className="flex items-center gap-3">
                       <img
                         className="h-11 w-11 rounded-full object-cover"
                         src={card.image}
                         alt={card.name}
+                        loading="lazy"
+                        decoding="async"
                       />
                       <div>
                         <div className="flex items-center gap-1 text-sm font-semibold text-ink">

@@ -14,7 +14,7 @@ export default function PageTransition({
       animate="animate"
       exit="exit"
       variants={pageTransition}
-      className="min-h-screen"
+      className="min-h-screen overflow-x-hidden"
     >
       {children}
     </motion.div>
