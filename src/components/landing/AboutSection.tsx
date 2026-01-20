@@ -18,13 +18,13 @@ export default function AboutSection() {
   return (
     <motion.section
       id="about"
-      className="mx-auto mt-14 grid w-full max-w-7xl grid-cols-12 items-start gap-8 px-4 py-10 text-ink sm:mt-16 sm:gap-10 sm:px-6 sm:py-12 lg:px-16"
+      className="mx-auto mt-14 grid w-full max-w-7xl grid-cols-12 items-start gap-8py-10 text-ink sm:mt-16 sm:gap-10 sm:px-6 sm:py-12 lg:px-16"
       variants={staggerContainer}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
     >
-      <div className="col-span-12 flex flex-col items-center gap-8 lg:col-span-5 lg:items-start">
+      <div className="col-span-12 flex min-w-0 flex-col items-center gap-8 lg:col-span-5 lg:items-start">
         <motion.p
           variants={fadeInUpItem}
           className="text-xs uppercase tracking-[0.35em] text-ink-muted sm:text-sm lg:text-lg"
@@ -33,7 +33,7 @@ export default function AboutSection() {
         </motion.p>
         <motion.div
           variants={fadeInUpItem}
-          className="relative aspect-square w-full max-w-[220px] rounded-full"
+          className="relative aspect-square w-full max-w-[220px] rounded-full sm:max-w-[240px]"
         >
           <img
             src={aboutContent.image}

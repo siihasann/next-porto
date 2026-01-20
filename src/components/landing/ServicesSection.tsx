@@ -40,7 +40,10 @@ const projects = [
 export default function ServicesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeProject = projects[activeIndex];
-  const [carouselSize, setCarouselSize] = useState({ width: 1230, height: 600 });
+  const [carouselSize, setCarouselSize] = useState({
+    width: 1230,
+    height: 600,
+  });
 
   useEffect(() => {
     const updateSize = () => {
@@ -98,22 +101,25 @@ export default function ServicesSection() {
           What I&apos;m Doing
         </motion.p>
         <motion.div
-          className="font-display text-2xl font-medium uppercase tracking-[0.08em] sm:text-4xl lg:text-7xl"
+          className="font-display text-lg font-medium uppercase tracking-[0.08em] sm:text-2xl lg:text-6xl"
           variants={staggerContainer}
         >
           {services.map((service) => (
             <motion.div
               key={service.label}
               variants={fadeInUpItem}
-              className="group mt-6 flex flex-wrap items-center justify-center gap-4 sm:mt-8"
+              className="group mt-5 flex flex-wrap items-center justify-center gap-3 sm:mt-7 sm:gap-4"
             >
-              <span className="pointer-events-none flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-orange-200 opacity-0 transition duration-300 group-hover:translate-x-1 group-hover:opacity-100 sm:h-10 sm:w-10 lg:h-16 lg:w-16">
-                <service.Icon className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
+              <span className="pointer-events-none flex h-7 w-7 items-center justify-center rounded-full border border-white/20 text-orange-200 opacity-0 transition duration-300 group-hover:translate-x-1 group-hover:opacity-100 sm:h-9 sm:w-9 lg:h-14 lg:w-14">
+                <service.Icon
+                  className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5"
+                  aria-hidden="true"
+                />
               </span>
               <span className="transition duration-300 group-hover:text-orange-200">
                 {service.label}
               </span>
-              <span className="h-px w-0 bg-white/40 transition-all duration-300 group-hover:w-10" />
+              <span className="h-px w-0 bg-white/40 transition-all duration-300 group-hover:w-4 sm:group-hover:w-6 md:group-hover:w-8 lg:group-hover:w-10" />
             </motion.div>
           ))}
         </motion.div>
@@ -124,7 +130,7 @@ export default function ServicesSection() {
         variants={fadeInUpItem}
       >
         <span>Selected Project</span>
-        <div className="flex items-center gap-3">
+        {/* <div className="flex items-center gap-3">
           <button
             className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
             onClick={handlePrev}
@@ -139,7 +145,7 @@ export default function ServicesSection() {
           >
             →
           </button>
-        </div>
+        </div> */}
       </motion.div>
 
       <motion.article
