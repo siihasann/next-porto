@@ -10,7 +10,7 @@ import { fadeInUpItem, staggerContainer } from "@/lib/animation-templates";
 const AboutHeroSection: React.FC = () => {
   return (
     <motion.section
-      className="min-h-screen bg-gradient-to-br relative overflow-hidden"
+      className="relative min-h-[80vh] overflow-hidden bg-gradient-to-br sm:min-h-screen"
       variants={staggerContainer}
       initial="hidden"
       whileInView="visible"
@@ -21,8 +21,8 @@ const AboutHeroSection: React.FC = () => {
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_500px_at_50%_200px,#C9DAEA,transparent)]"></div>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-8 lg:px-16">
-        <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[80vh]">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-16">
+        <div className="grid min-h-[70vh] items-center gap-12 lg:min-h-[80vh] lg:grid-cols-2 lg:gap-16">
           {/* Left Image */}
           {/* Left Image */}
           <motion.div
@@ -31,11 +31,11 @@ const AboutHeroSection: React.FC = () => {
           >
             {/* Main Circle Image */}
             <div className="relative z-10">
-              <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-2xl ring-8 ring-white">
+              <div className="h-56 w-56 overflow-hidden rounded-full shadow-2xl ring-4 ring-white sm:h-72 sm:w-72 sm:ring-6 lg:h-96 lg:w-96 lg:ring-8">
                 <img
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=800&fit=crop"
                   alt="Profile"
-                  className="w-full h-full object-cover"
+                  className="h-full w-full object-cover"
                 />
               </div>
 
@@ -45,10 +45,10 @@ const AboutHeroSection: React.FC = () => {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="absolute top-6 right-2 w-14 h-14 bg-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform duration-300 group z-20"
+                className="absolute right-2 top-2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-lg transition-transform duration-300 group hover:scale-110 sm:top-4 sm:h-12 sm:w-12 lg:top-6 lg:h-14 lg:w-14"
               >
                 <svg
-                  className="w-6 h-6 text-gray-700 group-hover:text-pink-600 transition-colors"
+                  className="h-4 w-4 text-gray-700 transition-colors group-hover:text-pink-600 sm:h-5 sm:w-5 lg:h-6 lg:w-6"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -61,10 +61,10 @@ const AboutHeroSection: React.FC = () => {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="absolute right-0 top-1/2 -translate-y-1/2 -mr-6 w-14 h-14 bg-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform duration-300 group z-20"
+                className="absolute right-0 top-1/2 z-20 -mr-2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-lg transition-transform duration-300 group hover:scale-110 sm:-mr-4 sm:h-12 sm:w-12 lg:-mr-6 lg:h-14 lg:w-14"
               >
                 <svg
-                  className="w-6 h-6 text-gray-700 group-hover:text-blue-600 transition-colors"
+                  className="h-4 w-4 text-gray-700 transition-colors group-hover:text-blue-600 sm:h-5 sm:w-5 lg:h-6 lg:w-6"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -77,10 +77,10 @@ const AboutHeroSection: React.FC = () => {
                 href="https://github.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="absolute bottom-8 -right-4 w-14 h-14 bg-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform duration-300 group z-20"
+                className="absolute -right-2 bottom-6 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-lg transition-transform duration-300 group hover:scale-110 sm:-right-3 sm:h-12 sm:w-12 lg:-right-4 lg:h-14 lg:w-14"
               >
                 <svg
-                  className="w-6 h-6 text-gray-700 group-hover:text-gray-900 transition-colors"
+                  className="h-4 w-4 text-gray-700 transition-colors group-hover:text-gray-900 sm:h-5 sm:w-5 lg:h-6 lg:w-6"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -93,10 +93,10 @@ const AboutHeroSection: React.FC = () => {
                 href="https://dribbble.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="absolute bottom-8 -left-4 w-14 h-14 bg-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform duration-300 group z-20"
+                className="absolute -left-2 bottom-6 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-lg transition-transform duration-300 group hover:scale-110 sm:-left-3 sm:h-12 sm:w-12 lg:-left-4 lg:h-14 lg:w-14"
               >
                 <svg
-                  className="w-6 h-6 text-gray-700 group-hover:text-pink-500 transition-colors"
+                  className="h-4 w-4 text-gray-700 transition-colors group-hover:text-pink-500 sm:h-5 sm:w-5 lg:h-6 lg:w-6"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -109,10 +109,10 @@ const AboutHeroSection: React.FC = () => {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="absolute left-0 top-1/2 -translate-y-1/2 -ml-6 w-14 h-14 bg-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform duration-300 group z-20"
+                className="absolute left-0 top-1/2 z-20 -ml-2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-lg transition-transform duration-300 group hover:scale-110 sm:-ml-4 sm:h-12 sm:w-12 lg:-ml-6 lg:h-14 lg:w-14"
               >
                 <svg
-                  className="w-6 h-6 text-gray-700 group-hover:text-black transition-colors"
+                  className="h-4 w-4 text-gray-700 transition-colors group-hover:text-black sm:h-5 sm:w-5 lg:h-6 lg:w-6"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -122,19 +122,19 @@ const AboutHeroSection: React.FC = () => {
             </div>
 
             {/* Decorative Circles */}
-            <div className="absolute top-0 left-0 w-80 h-80 lg:w-96 lg:h-96 rounded-full border-2 border-orange-500/30 animate-pulse"></div>
-            <div className="absolute -top-4 -left-4 w-80 h-80 lg:w-96 lg:h-96 rounded-full border border-pink-500/20"></div>
+            <div className="absolute left-0 top-0 h-56 w-56 rounded-full border-2 border-orange-500/30 animate-pulse sm:h-72 sm:w-72 lg:h-96 lg:w-96"></div>
+            <div className="absolute -left-2 -top-2 h-56 w-56 rounded-full border border-pink-500/20 sm:-left-4 sm:-top-4 sm:h-72 sm:w-72 lg:h-96 lg:w-96"></div>
 
             {/* Blur Effects */}
-            <div className="absolute -top-10 -left-10 w-40 h-40 bg-orange-500 rounded-full opacity-20 blur-3xl"></div>
-            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-orange-300 rounded-full opacity-20 blur-3xl"></div>
+            <div className="absolute -left-6 -top-6 h-24 w-24 rounded-full bg-orange-500 opacity-20 blur-3xl sm:-left-8 sm:-top-8 sm:h-32 sm:w-32 lg:-left-10 lg:-top-10 lg:h-40 lg:w-40"></div>
+            <div className="absolute -bottom-6 -right-6 h-24 w-24 rounded-full bg-orange-300 opacity-20 blur-3xl sm:-bottom-8 sm:-right-8 sm:h-32 sm:w-32 lg:-bottom-10 lg:-right-10 lg:h-40 lg:w-40"></div>
 
             {/* Floating Badge */}
-            <div className="absolute -bottom-6 right-0 lg:right-auto lg:left-0 bg-white rounded-2xl shadow-xl p-4 z-20">
+            <div className="absolute -bottom-4 right-1/2 z-20 w-[220px] translate-x-1/2 rounded-2xl bg-white p-3 shadow-xl sm:-bottom-6 sm:right-0 sm:w-auto sm:translate-x-0 sm:p-4 lg:left-0 lg:right-auto">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-300 rounded-full flex items-center justify-center flex-shrink-0">
+                <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-orange-300 sm:h-10 sm:w-10">
                   <svg
-                    className="w-5 h-5 text-white"
+                    className="h-4 w-4 text-white sm:h-5 sm:w-5"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -148,7 +148,7 @@ const AboutHeroSection: React.FC = () => {
                   </svg>
                 </div>
                 <div>
-                  <div className="font-bold text-gray-900 text-sm">
+                  <div className="text-sm font-bold text-gray-900">
                     Available
                   </div>
                   <div className="text-xs text-gray-500">For Freelance</div>
@@ -158,12 +158,12 @@ const AboutHeroSection: React.FC = () => {
           </motion.div>
 
           {/* Right Content */}
-          <motion.div className="space-y-8" variants={fadeInUpItem}>
+          <motion.div className="space-y-6 sm:space-y-8" variants={fadeInUpItem}>
             <motion.div className="space-y-4" variants={fadeInUpItem}>
-              <p className="text-sm tracking-[0.3em] text-gray-500 uppercase font-light">
+              <p className="text-xs font-light uppercase tracking-[0.3em] text-gray-500 sm:text-sm">
                 About Me
               </p>
-              <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
+              <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-6xl xl:text-7xl">
                 I'm a <span className="text-gradient-primary">Creative</span>
                 <br />
                 Designer
@@ -172,7 +172,7 @@ const AboutHeroSection: React.FC = () => {
 
             <motion.p
               variants={fadeInUpItem}
-              className="text-lg lg:text-xl text-gray-600 leading-relaxed"
+              className="text-base leading-relaxed text-gray-600 sm:text-lg lg:text-xl"
             >
               Crafting digital experiences that inspire and engage. With over 8
               years of experience in design and development, I transform ideas
@@ -181,40 +181,43 @@ const AboutHeroSection: React.FC = () => {
 
             <motion.div
               variants={fadeInUpItem}
-              className="grid grid-cols-3 gap-6 pt-4"
+              className="grid grid-cols-3 gap-3 pt-2 text-center sm:gap-6 sm:pt-4"
             >
-              <div className="space-y-2">
-                <div className="text-3xl lg:text-4xl font-bold text-gray-900">
+              <div className="space-y-1 sm:space-y-2">
+                <div className="text-xl font-bold text-gray-900 sm:text-3xl lg:text-4xl">
                   8+
                 </div>
-                <div className="text-xs text-gray-500 uppercase tracking-wide">
-                  Years Experience
+                <div className="text-[9px] uppercase tracking-wide text-gray-500 sm:text-xs">
+                  Years
+                  <span className="hidden sm:inline"> Experience</span>
                 </div>
               </div>
-              <div className="space-y-2">
-                <div className="text-3xl lg:text-4xl font-bold text-gray-900">
+              <div className="space-y-1 sm:space-y-2">
+                <div className="text-xl font-bold text-gray-900 sm:text-3xl lg:text-4xl">
                   200+
                 </div>
-                <div className="text-xs text-gray-500 uppercase tracking-wide">
-                  Projects Done
+                <div className="text-[9px] uppercase tracking-wide text-gray-500 sm:text-xs">
+                  Projects
+                  <span className="hidden sm:inline"> Done</span>
                 </div>
               </div>
-              <div className="space-y-2">
-                <div className="text-3xl lg:text-4xl font-bold text-gray-900">
+              <div className="space-y-1 sm:space-y-2">
+                <div className="text-xl font-bold text-gray-900 sm:text-3xl lg:text-4xl">
                   50+
                 </div>
-                <div className="text-xs text-gray-500 uppercase tracking-wide">
-                  Happy Clients
+                <div className="text-[9px] uppercase tracking-wide text-gray-500 sm:text-xs">
+                  Happy
+                  <span className="hidden sm:inline"> Clients</span>
                 </div>
               </div>
             </motion.div>
 
             <motion.div
               variants={fadeInUpItem}
-              className="flex flex-wrap gap-4 pt-4"
+              className="flex flex-row flex-wrap items-center justify-center gap-3 pt-2 sm:justify-start sm:gap-4 sm:pt-4"
             >
               <HighlightButton text="Download CV" variant="orange" />
-              <button className="border-2 border-gray-900 text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-gray-900 hover:text-white transition-all duration-300">
+              <button className="rounded-full border-2 border-gray-900 px-6 py-3 font-semibold text-gray-900 transition-all duration-300 hover:bg-gray-900 hover:text-white sm:px-8 sm:py-4">
                 Contact Me
               </button>
             </motion.div>

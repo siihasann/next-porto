@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Code2, LayoutGrid, Megaphone, Paintbrush } from "lucide-react";
 import { motion } from "framer-motion";
 import Carousel from "../Carousel";
@@ -40,6 +40,39 @@ const projects = [
 export default function ServicesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeProject = projects[activeIndex];
+  const [carouselSize, setCarouselSize] = useState({
+    width: 1230,
+    height: 600,
+  });
+
+  useEffect(() => {
+    const updateSize = () => {
+      const viewportWidth =
+        typeof window !== "undefined" ? window.innerWidth : 1200;
+
+      if (viewportWidth < 640) {
+        setCarouselSize({
+          width: Math.min(360, viewportWidth - 32),
+          height: 360,
+        });
+        return;
+      }
+
+      if (viewportWidth < 1024) {
+        setCarouselSize({
+          width: Math.min(760, viewportWidth - 64),
+          height: 480,
+        });
+        return;
+      }
+
+      setCarouselSize({ width: 1230, height: 600 });
+    };
+
+    updateSize();
+    window.addEventListener("resize", updateSize);
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
 
   const handlePrev = () => {
     setActiveIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
@@ -51,7 +84,7 @@ export default function ServicesSection() {
 
   return (
     <motion.section
-      className="surface-contrast mt-16 rounded-[34px] py-14 text-white shadow-[0_30px_60px_-40px_rgba(0,0,0,0.65)] sm:px-10 lg:px-16"
+      className="surface-contrast mt-16 rounded-[28px] px-4 py-12 text-white shadow-[0_30px_60px_-40px_rgba(0,0,0,0.65)] sm:rounded-[34px] sm:px-10 lg:px-16"
       variants={staggerContainer}
       initial="hidden"
       whileInView="visible"
@@ -63,27 +96,30 @@ export default function ServicesSection() {
       >
         <motion.p
           variants={fadeInUpItem}
-          className="text-lg font-semibold uppercase tracking-[0.35em] text-zinc-400"
+          className="text-xs font-semibold uppercase tracking-[0.3em] text-zinc-400 sm:text-sm lg:text-lg"
         >
           What I&apos;m Doing
         </motion.p>
         <motion.div
           variants={staggerContainer}
-          className="font-display text-3xl font-medium uppercase tracking-[0.08em] sm:text-4xl lg:text-7xl"
+          className="font-display text-xl font-medium uppercase tracking-[0.08em] sm:text-3xl lg:text-6xl"
         >
           {services.map((service) => (
             <motion.div
               key={service.label}
               variants={fadeInUpItem}
-              className="group mt-8 flex flex-wrap items-center justify-center gap-4"
+              className="group mt-5 flex flex-wrap items-center justify-center gap-3 sm:mt-7 sm:gap-4"
             >
-              <span className="pointer-events-none flex h-8 w-8 lg:h-16 lg:w-16 items-center justify-center rounded-full border border-white/20 text-orange-200 opacity-0 transition duration-300 group-hover:translate-x-1 group-hover:opacity-100">
-                <service.Icon className="h-4 w-4" aria-hidden="true" />
+              <span className="pointer-events-none flex h-7 w-7 items-center justify-center rounded-full border border-white/20 text-orange-200 opacity-0 transition duration-300 group-hover:translate-x-1 group-hover:opacity-100 sm:h-9 sm:w-9 lg:h-14 lg:w-14">
+                <service.Icon
+                  className="h-3.5 w-3.5 sm:h-4 sm:w-4 lg:h-5 lg:w-5"
+                  aria-hidden="true"
+                />
               </span>
               <span className="transition duration-300 group-hover:text-orange-200">
                 {service.label}
               </span>
-              <span className="h-px w-0 bg-white/40 transition-all duration-300 group-hover:w-10" />
+              <span className="h-px w-0 bg-white/40 transition-all duration-300 group-hover:w-4 sm:group-hover:w-6 md:group-hover:w-8 lg:group-hover:w-10" />
             </motion.div>
           ))}
         </motion.div>
@@ -91,10 +127,10 @@ export default function ServicesSection() {
 
       <motion.div
         variants={fadeInUpItem}
-        className="mt-12 flex items-center justify-between text-lg uppercase tracking-[0.35em] text-zinc-400"
+        className="mt-10 flex flex-col gap-4 text-xs uppercase tracking-[0.25em] text-zinc-400 sm:flex-row sm:items-center sm:justify-between sm:text-sm sm:tracking-[0.3em] lg:text-lg"
       >
         <span>Selected Project</span>
-        <div className="flex items-center gap-3">
+        {/* <div className="flex items-center gap-3">
           <button
             className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
             onClick={handlePrev}
@@ -109,15 +145,20 @@ export default function ServicesSection() {
           >
             →
           </button>
-        </div>
+        </div> */}
       </motion.div>
 
       <motion.article
         variants={fadeInUpItem}
-        className="mt-6 overflow-hidden rounded-[28px] bg-[linear-gradient(135deg,#0a0a0a,rgba(15,15,15,0.9))] shadow-[0_30px_60px_-45px_rgba(0,0,0,0.95)]"
+        className="mt-6 overflow-hidden rounded-[24px] bg-[linear-gradient(135deg,#0a0a0a,rgba(15,15,15,0.9))] shadow-[0_30px_60px_-45px_rgba(0,0,0,0.95)] sm:rounded-[28px]"
       >
-        <div style={{ height: "600px", position: "relative" }}>
-          <Carousel baseWidth={1230} baseHeight={600} autoplay loop />
+        <div className="relative h-[360px] sm:h-[480px] lg:h-[600px]">
+          <Carousel
+            baseWidth={carouselSize.width}
+            baseHeight={carouselSize.height}
+            autoplay
+            loop
+          />
         </div>
         {/* <div className="overflow-hidden">
           <div
