@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Briefcase, Sparkles } from "lucide-react";
 
 interface TimelineEntry {
@@ -11,23 +11,31 @@ interface TimelineEntry {
 const TimelineItem = ({
   item,
   index,
+  reduceMotion,
 }: {
   item: TimelineEntry;
   index: number;
+  reduceMotion?: boolean;
 }) => {
   const itemRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(itemRef, { once: true, margin: "-100px" });
+  const inView = reduceMotion ? true : isInView;
   const [isHovered, setIsHovered] = useState(false);
+  const motionProps = reduceMotion
+    ? { initial: false, animate: { opacity: 1, x: 0 }, transition: { duration: 0 } }
+    : {
+        initial: { opacity: 0, x: -50 },
+        animate: inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 },
+        transition: { duration: 0.6, delay: index * 0.2 },
+      };
 
   return (
     <motion.div
       ref={itemRef}
-      initial={{ opacity: 0, x: -50 }}
-      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-      transition={{ duration: 0.6, delay: index * 0.2 }}
+      {...motionProps}
       className="flex justify-start pb-10 md:pb-40 md:gap-10"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={reduceMotion ? undefined : () => setIsHovered(true)}
+      onMouseLeave={reduceMotion ? undefined : () => setIsHovered(false)}
     >
       <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
         <motion.div
@@ -66,7 +74,13 @@ const TimelineItem = ({
 };
 
 // Main Timeline Component
-export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
+export const Timeline = ({
+  data,
+  reduceMotion,
+}: {
+  data: TimelineEntry[];
+  reduceMotion?: boolean;
+}) => {
   const ref = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
@@ -77,14 +91,6 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       setHeight(rect.height);
     }
   }, [ref]);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start 10%", "end 50%"],
-  });
-
-  const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
-  const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
   return (
     <div
@@ -113,21 +119,47 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
       <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
         {data.map((item, index) => (
-          <TimelineItem key={index} item={item} index={index} />
-        ))}
-        <div
-          style={{ height: height + "px" }}
-          className="absolute md:left-8 left-8 top-0 overflow-hidden w-[4px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-200 dark:via-neutral-700 to-transparent to-[99%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]"
-        >
-          <motion.div
-            style={{
-              height: heightTransform,
-              opacity: opacityTransform,
-            }}
-            className="absolute inset-x-0 top-0 w-[10px] bg-gradient-to-t from-orange-500 via-orange-300 to-transparent from-[0%] via-[10%] rounded-full"
+          <TimelineItem
+            key={index}
+            item={item}
+            index={index}
+            reduceMotion={reduceMotion}
           />
-        </div>
+        ))}
+        {reduceMotion ? null : (
+          <TimelineScrollIndicator height={height} containerRef={containerRef} />
+        )}
       </div>
+    </div>
+  );
+};
+
+const TimelineScrollIndicator = ({
+  height,
+  containerRef,
+}: {
+  height: number;
+  containerRef: React.RefObject<HTMLDivElement>;
+}) => {
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 10%", "end 50%"],
+  });
+  const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
+  const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
+
+  return (
+    <div
+      style={{ height: height + "px" }}
+      className="absolute left-8 top-0 w-[4px] overflow-hidden bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-200 to-transparent to-[99%] dark:via-neutral-700 [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] md:left-8"
+    >
+      <motion.div
+        style={{
+          height: heightTransform,
+          opacity: opacityTransform,
+        }}
+        className="absolute inset-x-0 top-0 w-[10px] rounded-full bg-gradient-to-t from-orange-500 via-orange-300 to-transparent from-[0%] via-[10%]"
+      />
     </div>
   );
 };
