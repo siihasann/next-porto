@@ -102,28 +102,28 @@ const techStackGroups = [
 export default function TechStackSection() {
   return (
     <motion.section
-      className="mt-40 mb-40"
+      className="mt-16 mb-16 px-4 sm:mt-24 sm:mb-24 sm:px-6 lg:px-8"
       variants={staggerContainer}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
     >
-      <div className="max-w-7xl mx-auto">
-        <div className="grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-8 lg:grid-cols-[1fr_2fr] lg:gap-16">
           {/* Column 1: Section Title & Description */}
           <motion.div
             variants={fadeInUpItem}
             className="space-y-6 lg:sticky lg:top-8 lg:self-start"
           >
             <div className="space-y-3">
-              <p className="text-base font-semibold uppercase tracking-[0.3em] text-ink-muted">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-ink-muted sm:text-sm">
                 Tech Stack
               </p>
-              <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl">
+              <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl lg:text-4xl">
                 Technologies I Work With
               </h2>
             </div>
-            <p className="text-sm leading-7 text-ink-muted">
+            <p className="text-sm leading-7 text-ink-muted sm:text-base">
               A collection of modern tools and frameworks I use to build
               scalable, performant, and beautiful web applications. From
               frontend to backend, I leverage the best technologies to deliver
@@ -138,7 +138,7 @@ export default function TechStackSection() {
                 key={group.category}
                 variants={fadeInUpItem}
                 custom={index}
-                className="group relative overflow-hidden rounded-3xl border border-black/5 bg-white/70 px-6 py-5 shadow-[var(--shadow-elevated)] backdrop-blur"
+                className="group relative overflow-hidden rounded-3xl border border-black/5 bg-white/70 px-4 py-4 shadow-[var(--shadow-elevated)] backdrop-blur sm:px-6 sm:py-5"
               >
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                   <div className="space-y-1">
@@ -153,8 +153,21 @@ export default function TechStackSection() {
                     <FloatingDock
                       items={group.technologies}
                       desktopClassName="bg-transparent border-0 shadow-none"
+                      mobileClassName="hidden"
                     />
                   </div>
+                </div>
+                <div className="mt-3 grid grid-cols-3 gap-3 md:hidden">
+                  {group.technologies.map((item) => (
+                    <a
+                      key={item.title}
+                      href={item.href}
+                      className="flex flex-col items-center gap-2 rounded-2xl border border-black/5 bg-white/80 px-3 py-3 text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-muted shadow-sm transition hover:border-orange-200"
+                    >
+                      <span className="h-6 w-6">{item.icon}</span>
+                      {item.title}
+                    </a>
+                  ))}
                 </div>
                 <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-orange-500 transition-all duration-500 ease-out group-hover:w-full" />
               </motion.div>

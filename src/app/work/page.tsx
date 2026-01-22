@@ -9,7 +9,7 @@ export default function WorkPage() {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <main className="mx-auto w-full px-20 pb-16 pt-10">
+      <main className="mx-auto w-full px-4 pb-16 pt-8 sm:px-8 lg:px-20">
         <WorkHeroSection />
         <FeaturedProjectsSection />
         <ProcessSection />
