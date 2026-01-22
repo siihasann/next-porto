@@ -57,37 +57,38 @@ const ContactSection: React.FC = () => {
   };
 
   return (
-    <section className="surface-contrast rounded-[34px] py-16 text-white shadow-[0_30px_60px_-40px_rgba(0,0,0,0.65)] sm:px-10 lg:px-16">
-      <div className="max-w-7xl mx-auto w-full">
+    <section className="surface-contrast rounded-[28px] px-4 py-12 text-white shadow-[0_30px_60px_-40px_rgba(0,0,0,0.65)] sm:rounded-[34px] sm:px-10 sm:py-16 lg:px-16">
+      <div className="mx-auto w-full max-w-7xl">
         <div>
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
             {/* Left Side - Profile Image */}
-            <div className="relative flex flex-col justify-between min-h-[500px]">
+            <div className="relative flex flex-col gap-4 sm:gap-6">
               {/* Contact Label */}
               <div>
-                <p className="text-white text-lg tracking-[0.3em] uppercase font-light">
+                <p className="text-xs font-light uppercase tracking-[0.3em] text-white sm:text-sm lg:text-lg">
                   CONTACT
                 </p>
               </div>
 
               {/* Profile Image - Centered */}
-              <div className="flex items-center flex-1">
-                <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
+              <div className="flex items-center">
+                <Lanyard
+                  position={[0, 0, 20]}
+                  gravity={[0, -40, 0]}
+                  className="h-72 sm:h-96 lg:h-[520px]"
+                />
               </div>
-
-              {/* Empty space for balance */}
-              <div></div>
             </div>
 
             {/* Right Side - Form */}
             <div className="flex flex-col justify-center">
-              <div className="space-y-8 rounded-[28px] border border-white/10 bg-white/5 p-8 shadow-[0_20px_50px_-40px_rgba(0,0,0,0.8)]">
+              <div className="space-y-6 rounded-[24px] border border-white/10 bg-white/5 p-5 shadow-[0_20px_50px_-40px_rgba(0,0,0,0.8)] sm:rounded-[28px] sm:p-8 sm:space-y-8">
                 {/* Heading */}
-                <div className="space-y-4 mb-8">
-                  <h2 className="text-5xl lg:text-6xl font-bold text-white leading-tight">
+                <div className="mb-6 space-y-3 sm:mb-8 sm:space-y-4">
+                  <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-6xl">
                     Let's Collaborate!
                   </h2>
-                  <p className="text-gray-400 text-lg leading-relaxed">
+                  <p className="text-sm leading-relaxed text-gray-400 sm:text-base lg:text-lg">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                     do eiusmod tempor incididunt ut labore et dolore magna
                     aliqua minim veniam, quis nostrud.
@@ -95,7 +96,7 @@ const ContactSection: React.FC = () => {
                 </div>
 
                 {/* Form Inputs */}
-                <div className="space-y-6">
+                <div className="space-y-5 sm:space-y-6">
                   {/* Name Input */}
                   <input
                     type="text"
@@ -104,7 +105,7 @@ const ContactSection: React.FC = () => {
                     value={formData.name}
                     onChange={handleChange}
                     aria-invalid={Boolean(errors.name)}
-                    className={`w-full px-6 py-4 bg-white/10 border rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-orange-500 focus:bg-white/5 transition-all duration-300 ${
+                    className={`w-full rounded-2xl border bg-white/10 px-4 py-3 text-sm text-white placeholder-gray-400 transition-all duration-300 focus:bg-white/5 focus:outline-none focus:border-orange-500 sm:px-6 sm:py-4 sm:text-base ${
                       errors.name ? "border-red-400/70" : "border-white/20"
                     }`}
                   />
@@ -120,7 +121,7 @@ const ContactSection: React.FC = () => {
                     value={formData.email}
                     onChange={handleChange}
                     aria-invalid={Boolean(errors.email)}
-                    className={`w-full px-6 py-4 bg-white/10 border rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-orange-500 focus:bg-white/5 transition-all duration-300 ${
+                    className={`w-full rounded-2xl border bg-white/10 px-4 py-3 text-sm text-white placeholder-gray-400 transition-all duration-300 focus:bg-white/5 focus:outline-none focus:border-orange-500 sm:px-6 sm:py-4 sm:text-base ${
                       errors.email ? "border-red-400/70" : "border-white/20"
                     }`}
                   />
@@ -135,7 +136,7 @@ const ContactSection: React.FC = () => {
                     value={formData.message}
                     onChange={handleChange}
                     rows={4}
-                    className="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-orange-500 focus:bg-white/5 transition-all duration-300 resize-none"
+                    className="w-full resize-none rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder-gray-400 transition-all duration-300 focus:bg-white/5 focus:outline-none focus:border-orange-500 sm:px-6 sm:py-4 sm:text-base"
                   />
                   <div className="flex items-center justify-between text-xs text-white/50">
                     <span>Keep it short and sweet.</span>
@@ -146,7 +147,7 @@ const ContactSection: React.FC = () => {
                   <button
                     onClick={handleSubmit}
                     disabled={status === "loading"}
-                    className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-5 rounded-2xl transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70"
+                    className="w-full rounded-2xl bg-orange-500 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:bg-orange-600 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70 sm:py-5"
                   >
                     {status === "loading" ? "Sending..." : "Submit"}
                   </button>
@@ -169,7 +170,7 @@ const ContactSection: React.FC = () => {
                         href={social.href}
                         target="_blank"
                         rel="noreferrer"
-                        className="flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-center text-sm font-semibold text-white/90 transition hover:border-white/40 hover:bg-white/10"
+                        className="flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-2 text-center text-xs font-semibold text-white/90 transition hover:border-white/40 hover:bg-white/10 sm:px-4 sm:text-sm"
                       >
                         <social.Icon className="h-4 w-4" aria-hidden="true" />
                         {social.label}

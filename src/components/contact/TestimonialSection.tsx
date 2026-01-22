@@ -48,7 +48,7 @@ const marqueeItems = [...reviews, ...reviews];
 
 export default function TestimonialSection() {
   return (
-    <section className="mt-16 rounded-[34px] px-6 py-16 sm:px-10 lg:px-16">
+    <section className="mt-16 rounded-[28px] px-4 py-12 sm:rounded-[34px] sm:px-10 sm:py-16 lg:px-16">
       <style>{`
         @keyframes marquee-scroll {
           0% { transform: translateX(0%); }
@@ -87,27 +87,29 @@ export default function TestimonialSection() {
       `}</style>
 
       <div className="mx-auto max-w-7xl">
-        <div className="mt-12 space-y-6">
+        <div className="mt-10 space-y-6 sm:mt-12">
           {["normal", "reverse"].map((direction) => (
             <div
               key={direction}
               className="marquee-row relative overflow-hidden rounded-[28px] border border-zinc-100 "
             >
               <div
-                className={`marquee-track flex min-w-[200%] gap-6 px-4 py-6 ${
+                className={`marquee-track flex min-w-[200%] gap-4 px-3 py-4 sm:gap-6 sm:px-4 sm:py-6 ${
                   direction === "reverse" ? "marquee-reverse" : ""
                 }`}
               >
                 {marqueeItems.map((card, index) => (
                   <article
                     key={`${card.id}-${index}`}
-                    className="w-72 shrink-0 rounded-2xl border border-zinc-100 p-5 shadow-[0_18px_40px_-30px_rgba(15,23,42,0.5)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_45px_-26px_rgba(15,23,42,0.6)]"
+                    className="w-64 shrink-0 rounded-2xl border border-zinc-100 p-4 shadow-[0_18px_40px_-30px_rgba(15,23,42,0.5)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_45px_-26px_rgba(15,23,42,0.6)] sm:w-72 sm:p-5"
                   >
                     <div className="flex items-center gap-3">
                       <img
                         className="h-11 w-11 rounded-full object-cover"
                         src={card.image}
                         alt={card.name}
+                        loading="lazy"
+                        decoding="async"
                       />
                       <div>
                         <div className="flex items-center gap-1 text-sm font-semibold text-ink">
