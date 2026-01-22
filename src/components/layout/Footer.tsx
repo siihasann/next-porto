@@ -26,22 +26,22 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="surface-contrast rounded-t-[50px] text-white">
+    <footer className="surface-contrast rounded-t-[40px] text-white sm:rounded-t-[50px]">
       {/* CTA Section */}
       <div className="border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-8 lg:px-16 py-14 text-center">
-          <h2 className="text-4xl lg:text-8xl font-semibold mb-12">
+        <div className="mx-auto max-w-7xl px-4 py-10 text-center sm:px-8 sm:py-12 lg:px-16 lg:py-14">
+          <h2 className="mb-8 text-3xl font-semibold sm:text-4xl lg:mb-12 lg:text-7xl xl:text-8xl">
             Have a Cool
             <br />
             Project?
           </h2>
 
-          <button className="group bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full text-lg font-semibold transition-all duration-300 inline-flex items-center gap-3 shadow-lg hover:shadow-xl hover:scale-105">
+          <button className="group inline-flex items-center gap-3 rounded-full bg-orange-500 px-5 py-2 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-orange-600 hover:shadow-xl sm:px-6 sm:py-2.5 sm:text-base lg:text-lg">
             Contact Me
             <div className="bg-white rounded-full p-2 transition-transform duration-300 group-hover:translate-x-1">
               <ArrowRight
                 className="text-orange-500"
-                size={20}
+                size={18}
                 strokeWidth={2.5}
               />
             </div>
@@ -50,19 +50,19 @@ const Footer: React.FC = () => {
       </div>
 
       {/* Footer Content */}
-      <div className="w-full px-8 lg:px-16 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-12 lg:gap-16">
+      <div className="w-full px-4 py-10 sm:px-8 lg:px-16">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-6 md:gap-12 lg:gap-16">
           {/* Profile Section */}
           <div className="md:col-span-3">
             <div className="mb-6">
-              <div className="w-32 h-32 rounded-full bg-orange-500 overflow-hidden mb-6">
+              <div className="mb-5 h-24 w-24 overflow-hidden rounded-full bg-orange-500 sm:h-28 sm:w-28 lg:h-32 lg:w-32">
                 <img
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop"
                   alt="Profile"
-                  className="w-full h-full object-cover"
+                  className="h-full w-full object-cover"
                 />
               </div>
-              <p className="text-gray-300 text-lg leading-relaxed">
+              <p className="text-base leading-relaxed text-gray-300 sm:text-lg">
                 Visual Designer Based in
                 <br />
                 Indonesia
@@ -72,13 +72,15 @@ const Footer: React.FC = () => {
 
           {/* Navigation */}
           <div>
-            <h3 className="text-xl font-semibold mb-6">Navigation</h3>
-            <ul className="space-y-2">
+            <h3 className="mb-4 text-lg font-semibold sm:mb-6 sm:text-xl">
+              Navigation
+            </h3>
+            <ul className="space-y-2 sm:space-y-3">
               {navigationLinks.map((link) => (
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors duration-200 text-lg"
+                    className="text-sm text-gray-400 transition-colors duration-200 hover:text-white sm:text-lg"
                   >
                     {link.name}
                   </a>
@@ -89,13 +91,15 @@ const Footer: React.FC = () => {
 
           {/* Services */}
           <div>
-            <h3 className="text-xl font-semibold mb-6">Services</h3>
-            <ul className="space-y-4">
+            <h3 className="mb-4 text-lg font-semibold sm:mb-6 sm:text-xl">
+              Services
+            </h3>
+            <ul className="space-y-2 sm:space-y-4">
               {servicesLinks.map((link) => (
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors duration-200 text-lg"
+                    className="text-sm text-gray-400 transition-colors duration-200 hover:text-white sm:text-lg"
                   >
                     {link.name}
                   </a>
@@ -106,13 +110,15 @@ const Footer: React.FC = () => {
 
           {/* Social Media */}
           <div>
-            <h3 className="text-xl font-semibold mb-6">Social Media</h3>
-            <ul className="space-y-2">
+            <h3 className="mb-4 text-lg font-semibold sm:mb-6 sm:text-xl">
+              Social Media
+            </h3>
+            <ul className="space-y-2 sm:space-y-3">
               {socialLinks.map((link) => (
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors duration-200 text-lg"
+                    className="text-sm text-gray-400 transition-colors duration-200 hover:text-white sm:text-lg"
                   >
                     {link.name}
                   </a>
@@ -125,8 +131,8 @@ const Footer: React.FC = () => {
 
       {/* Bottom Bar */}
       <div className="border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-8 lg:px-16 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-8 lg:px-16">
+          <div className="flex flex-col items-center justify-between gap-2 sm:flex-row sm:gap-4">
             <p className="text-gray-500 text-sm">2023 | Donnie Yen</p>
           </div>
         </div>

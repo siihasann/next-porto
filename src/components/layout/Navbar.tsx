@@ -20,8 +20,8 @@ export default function Navbar() {
     `nav-link${pathname === href ? " is-active" : ""}`;
 
   return (
-    <header className="sticky top-0 z-99 mx-auto flex w-full items-center justify-center">
-      <nav className="glass-nav flex w-full flex-wrap items-center justify-center gap-4 px-3 py-3 text-[10px] font-semibold uppercase tracking-[0.18em] sm:gap-8 sm:px-6 sm:text-xs sm:tracking-[0.2em] lg:gap-10">
+    <header className="fixed left-0 right-0 top-0 z-50 w-full">
+      <nav className="glass-nav flex w-full flex-wrap items-center justify-center gap-3 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] sm:gap-8 sm:px-6 sm:py-3 sm:text-xs sm:tracking-[0.2em] lg:gap-10 lg:px-16">
         {leftItems.map((item) => (
           <Link
             key={item.href}
