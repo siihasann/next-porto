@@ -139,7 +139,7 @@ const TimelineScrollIndicator = ({
   containerRef,
 }: {
   height: number;
-  containerRef: React.RefObject<HTMLDivElement>;
+  containerRef: React.RefObject<HTMLDivElement | null>;
 }) => {
   const { scrollYProgress } = useScroll({
     target: containerRef,

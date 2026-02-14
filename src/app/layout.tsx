@@ -14,7 +14,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Hanif Portfolio",
+  title: "Hasan Portfolio",
   description: "Visual designer portfolio",
 };
 
