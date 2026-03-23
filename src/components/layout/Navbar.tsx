@@ -35,7 +35,7 @@ export default function Navbar() {
         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-[0_10px_30px_-20px_rgba(0,0,0,0.5)] sm:h-12 sm:w-12">
           <svg
             aria-hidden="true"
-            className="h-5 w-5 text-orange-500 sm:h-6 sm:w-6"
+            className="h-5 w-5 text-[#577E53] sm:h-6 sm:w-6"
             viewBox="0 0 24 24"
             fill="currentColor"
           >

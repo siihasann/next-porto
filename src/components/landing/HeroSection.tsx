@@ -1,13 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  cardHover,
-  fadeInUpItem,
-  staggerContainer,
-} from "@/lib/animation-templates";
+import { fadeInUpItem, staggerContainer } from "@/lib/animation-templates";
 import ExpandableButton from "../ui/ExpandableButton";
 import HighlightButton from "../ui/HighlightButton";
+import LightRays from "../LightRays";
+import { TextHoverEffect } from "../ui/text-hover-effect";
 
 const heroContent = {
   badge: "Portfolio 2024",
@@ -26,8 +24,7 @@ const heroHighlights = [
     id: "identity-brand",
     eyebrow: "Identity & Brand",
     title: "Branding Project",
-    image:
-      "https://images.unsplash.com/photo-1526498460520-4c246339dccb?auto=format&fit=crop&w=900&q=80",
+    image: "/assets/images/home/image1.jpg",
     overlay:
       "radial-gradient(circle at top, rgba(42,42,42,0.9) 0%, transparent 55%)",
   },
@@ -35,8 +32,7 @@ const heroHighlights = [
     id: "product-ui",
     eyebrow: "Product & UI",
     title: "Branding Project",
-    image:
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",
+    image: "/assets/images/home/image2.jpg",
     overlay:
       "radial-gradient(circle at top right, rgba(48,48,48,0.9) 0%, transparent 60%)",
   },
@@ -44,9 +40,30 @@ const heroHighlights = [
 
 export default function HeroSection() {
   return (
-    <section className="surface-contrast rounded-[28px] px-4 py-12 text-center text-white shadow-[0_30px_60px_-40px_rgba(0,0,0,0.65)] sm:rounded-[34px] sm:px-10 lg:px-16">
-      <motion.div
-        className="mx-auto flex max-w-7xl flex-col items-center gap-6"
+    <section className="surface-contrast relative overflow-hidden rounded-[28px] px-4 py-12 text-center text-white shadow-[0_30px_60px_-40px_rgba(0,0,0,0.65)] sm:rounded-[34px] sm:px-10 lg:px-16">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[420px] sm:h-[520px] lg:h-[600px]">
+        <LightRays
+          raysOrigin="top-center"
+          raysColor="#ffffff"
+          raysSpeed={1}
+          lightSpread={0.5}
+          rayLength={3}
+          followMouse={true}
+          mouseInfluence={0.1}
+          noiseAmount={0}
+          distortion={0}
+          className="custom-rays opacity-80"
+          pulsating={false}
+          fadeDistance={1}
+          saturation={1}
+        />
+      </div>
+      <div className="flex items-center justify-center overflow-visible px-10">
+        <TextHoverEffect text="SansLabs" />
+      </div>
+
+      {/* <motion.div
+        className="relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-6 "
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
@@ -54,13 +71,13 @@ export default function HeroSection() {
       >
         <motion.p
           variants={fadeInUpItem}
-          className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-300"
+          className="text-sm font-semibold font-heading uppercase tracking-[0.3em] text-[#84b179]"
         >
           {heroContent.badge}
         </motion.p>
         <motion.h1
           variants={fadeInUpItem}
-          className="font-display text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
+          className="text-4xl font-extralight font-heading leading-tight  sm:text-5xl lg:text-6xl"
         >
           {heroContent.title}
           <br />
@@ -68,17 +85,17 @@ export default function HeroSection() {
         </motion.h1>
         <motion.p
           variants={fadeInUpItem}
-          className="max-w-2xl text-sm leading-7 text-zinc-300 sm:text-base"
+          className="max-w-2xl text-lg font-tagline leading-7 text-zinc-300"
         >
           {heroContent.description}
         </motion.p>
         <motion.div variants={fadeInUpItem}>
-          <HighlightButton text="Contact Me" variant="orange" />
+          <HighlightButton text="Contact Me" variant="green" />
         </motion.div>
-      </motion.div>
+      </motion.div> */}
 
       <motion.div
-        className="mt-12 grid gap-5 text-left sm:grid-cols-2 sm:gap-6"
+        className="relative z-10 mt-12 grid gap-5 text-left sm:grid-cols-2 sm:gap-6"
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
@@ -106,11 +123,11 @@ export default function HeroSection() {
               }}
             />
             <div className="relative z-10 flex h-full flex-col justify-between gap-10 sm:gap-16">
-              <p className="text-xs uppercase tracking-[0.25em] text-zinc-300">
+              <p className="text-xs font-heading uppercase tracking-[0.25em] text-zinc-300">
                 {highlight.eyebrow}
               </p>
               <div className="flex items-center justify-between">
-                <h3 className="font-display text-lg font-semibold">
+                <h3 className="font-heading text-lg font-semibold">
                   {highlight.title}
                 </h3>
                 <ExpandableButton />

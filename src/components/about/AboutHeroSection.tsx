@@ -158,7 +158,10 @@ const AboutHeroSection: React.FC = () => {
           </motion.div>
 
           {/* Right Content */}
-          <motion.div className="space-y-6 sm:space-y-8" variants={fadeInUpItem}>
+          <motion.div
+            className="space-y-6 sm:space-y-8"
+            variants={fadeInUpItem}
+          >
             <motion.div className="space-y-4" variants={fadeInUpItem}>
               <p className="text-xs font-light uppercase tracking-[0.3em] text-gray-500 sm:text-sm">
                 About Me
@@ -216,7 +219,7 @@ const AboutHeroSection: React.FC = () => {
               variants={fadeInUpItem}
               className="flex flex-row flex-wrap items-center justify-center gap-3 pt-2 sm:justify-start sm:gap-4 sm:pt-4"
             >
-              <HighlightButton text="Download CV" variant="orange" />
+              <HighlightButton text="Download CV" variant="green" />
               <button className="rounded-full border-2 border-gray-900 px-6 py-3 font-semibold text-gray-900 transition-all duration-300 hover:bg-gray-900 hover:text-white sm:px-8 sm:py-4">
                 Contact Me
               </button>

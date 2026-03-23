@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { ArrowRight } from "lucide-react";
 
-type ButtonVariant = "orange" | "blue" | "purple" | "gradient";
+type ButtonVariant = "green" | "blue" | "purple" | "gradient";
 
 interface HighlightButtonProps {
   text?: string;
@@ -18,17 +18,17 @@ const HighlightButton: React.FC<HighlightButtonProps> = ({
   onClick,
   href,
   className = "",
-  variant = "orange",
+  variant = "green",
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const variants = {
-    orange: {
-      bg: "bg-orange-500",
-      hoverBg: "hover:bg-orange-500",
+    green: {
+      bg: "bg-[#577E53]",
+      hoverBg: "hover:bg-[#577E53]",
       text: "text-white",
       highlightBg: "bg-white",
-      highlightText: "text-orange-500",
+      highlightText: "text-[#577E53]",
     },
     blue: {
       bg: "bg-blue-500",
@@ -91,7 +91,7 @@ const HighlightButton: React.FC<HighlightButtonProps> = ({
       >
         <ArrowRight
           className={`
-            transition-all duration-300 text-orange-500
+            transition-all duration-300 text-[#577E53]
             ${
               isHovered
                 ? `opacity-100 ${currentVariant.highlightText}`

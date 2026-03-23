@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import AboutSection from "@/components/landing/AboutSection";
+import AboutSectionV2 from "@/components/landing/AboutSectionV2";
 import ClientReviewSection from "@/components/landing/ClientReview";
 import HeroSection from "@/components/landing/HeroSection";
 import PastClientsSection from "@/components/landing/PastClient";
@@ -21,7 +21,7 @@ export default function Home() {
         animate="visible"
       >
         <HeroSection />
-        <AboutSection />
+        <AboutSectionV2 />
         <ServicesSection />
         <PastClientsSection />
         <ClientReviewSection />

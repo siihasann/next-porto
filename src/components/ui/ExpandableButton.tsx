@@ -34,8 +34,8 @@ export default function SecondButton({
   const variants = {
     white: {
       bg: "bg-white",
-      text: "text-orange-500",
-      icon: "text-orange-500",
+      text: "text-[#577E53]",
+      icon: "text-[#577E53]",
       shadow: "shadow-md hover:shadow-xl",
     },
     dark: {
@@ -76,14 +76,14 @@ export default function SecondButton({
         ? expandedWidth
         : collapsedSize
       : expand === "left"
-      ? hover
-        ? expandedWidth
-        : collapsedSize
-      : expand === "both"
-      ? hover
-        ? expandedWidth
-        : collapsedSize
-      : collapsedSize;
+        ? hover
+          ? expandedWidth
+          : collapsedSize
+        : expand === "both"
+          ? hover
+            ? expandedWidth
+            : collapsedSize
+          : collapsedSize;
 
   const justify =
     expand === "right"
@@ -91,12 +91,12 @@ export default function SecondButton({
         ? "flex-start"
         : "center"
       : expand === "left"
-      ? hover
-        ? "flex-end"
-        : "center"
-      : expand === "both"
-      ? "center"
-      : "center";
+        ? hover
+          ? "flex-end"
+          : "center"
+        : expand === "both"
+          ? "center"
+          : "center";
 
   // ===== Icon logic =====
   const Icon =

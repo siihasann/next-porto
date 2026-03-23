@@ -38,6 +38,7 @@ interface LanyardProps {
   gravity?: [number, number, number];
   fov?: number;
   transparent?: boolean;
+  className?: string;
 }
 
 export default function Lanyard({
@@ -45,6 +46,7 @@ export default function Lanyard({
   gravity = [0, -40, 0],
   fov = 20,
   transparent = true,
+  className,
 }: LanyardProps) {
   const [isMobile, setIsMobile] = useState(() => {
     return typeof window !== "undefined" && window.innerWidth < 768;
@@ -57,7 +59,11 @@ export default function Lanyard({
   }, []);
 
   return (
-    <div className="relative z-0 w-full h-screen flex justify-center items-center">
+    <div
+      className={`relative z-0 flex w-full items-center justify-center ${
+        className ?? "h-screen"
+      }`}
+    >
       <Canvas
         camera={{ position, fov }}
         dpr={[1, isMobile ? 1.5 : 2]}
@@ -145,7 +151,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }: BandProps) {
         new THREE.Vector3(),
         new THREE.Vector3(),
         new THREE.Vector3(),
-      ])
+      ]),
   );
 
   const [dragged, drag] = useState<false | THREE.Vector3>(false);
@@ -157,9 +163,10 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }: BandProps) {
   }
 
   // joints
-  useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], 1]);
-  useRopeJoint(j1, j2, [[0, 0, 0], [0, 0, 0], 1]);
-  useRopeJoint(j2, j3, [[0, 0, 0], [0, 0, 0], 1]);
+  const ropeLength = isMobile ? 1.3 : 1;
+  useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], ropeLength]);
+  useRopeJoint(j1, j2, [[0, 0, 0], [0, 0, 0], ropeLength]);
+  useRopeJoint(j2, j3, [[0, 0, 0], [0, 0, 0], ropeLength]);
   useSphericalJoint(j3, card, [
     [0, 0, 0],
     [0, 1.45, 0],
@@ -194,7 +201,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }: BandProps) {
       [j1, j2].forEach((ref) => {
         if (!ref.current.lerped)
           ref.current.lerped = new THREE.Vector3().copy(
-            ref.current.translation()
+            ref.current.translation(),
           );
 
         const dist = ref.current.lerped.distanceTo(ref.current.translation());
@@ -202,7 +209,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }: BandProps) {
 
         ref.current.lerped.lerp(
           ref.current.translation(),
-          delta * (minSpeed + clamped * (maxSpeed - minSpeed))
+          delta * (minSpeed + clamped * (maxSpeed - minSpeed)),
         );
       });
 
@@ -258,7 +265,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }: BandProps) {
               drag(
                 new THREE.Vector3()
                   .copy(e.point)
-                  .sub(new THREE.Vector3().copy(card.current.translation()))
+                  .sub(new THREE.Vector3().copy(card.current.translation())),
               );
             }}
           >
@@ -285,7 +292,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }: BandProps) {
         <meshLineMaterial
           color="white"
           depthTest={false}
-          resolution={isMobile ? [1000, 2000] : [1000, 1000]}
+          resolution={isMobile ? [1000, 1000] : [3000, 3000]}
           useMap
           map={texture}
           repeat={[-4, 1]}

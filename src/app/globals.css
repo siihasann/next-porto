@@ -1,14 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 @import "tailwindcss";
 @source "../**/*.{ts,tsx,js,jsx,mdx}";
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --color-primary: #f97316;
-  --color-primary-strong: #fb923c;
+  --color-primary: #577e53;
+  --color-primary-strong: #84b179;
   --color-surface: #ffffff;
   --color-surface-muted: #f1f5ec;
-  --color-surface-contrast: #121212;
+  --color-surface-contrast: black;
   --color-ink: #0f172a;
   --color-ink-muted: #6b7280;
   --blur-strong: 18px;
@@ -96,11 +97,25 @@ body {
     #f7f7f2 40%,
     #f4f6f0 100%
   );
-  font-family: var(--font-body), sans-serif;
 }
 
-.font-display {
-  font-family: var(--font-display), sans-serif;
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.font-heading {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+
+.font-text {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}
+
+.font-tagline {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
 }
 
 @layer components {
@@ -109,7 +124,7 @@ body {
   }
 
   .surface-secondary {
-    background: var(--color-surface-muted);
+    background: var(--color-primary);
   }
 
   .surface-contrast {
@@ -149,7 +164,9 @@ body {
     transform: translateX(-50%) scaleX(0);
     transform-origin: center;
     opacity: 0.65;
-    transition: transform 200ms ease, opacity 200ms ease;
+    transition:
+      transform 200ms ease,
+      opacity 200ms ease;
   }
 
   .nav-link:hover {

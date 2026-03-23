@@ -1,4 +1,4 @@
-import AboutHeroSection from "@/components/about/AboutHeroSection";
+import AboutHeroSectionV2 from "@/components/about/AboutHeroSectionV2";
 import { ExperiencesSection } from "@/components/about/ExperiencesSection";
 import ServicesSection from "@/components/about/ServicesSection";
 import Footer from "@/components/layout/Footer";
@@ -9,7 +9,7 @@ export default function About() {
     <div className="min-h-screen">
       <Navbar />
       <main className="mx-auto w-full px-4 pb-16 pt-8 sm:px-8 lg:px-20">
-        <AboutHeroSection />
+        <AboutHeroSectionV2 />
         <ServicesSection />
         <ExperiencesSection />
       </main>

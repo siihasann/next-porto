@@ -27,7 +27,7 @@ export default function AboutSection() {
       <div className="col-span-12 flex min-w-0 flex-col items-center gap-8 lg:col-span-5 lg:items-start">
         <motion.p
           variants={fadeInUpItem}
-          className="text-xs uppercase tracking-[0.35em] text-ink-muted sm:text-sm lg:text-lg"
+          className="text-xs uppercase tracking-[0.35em] font-heading font-semibold text-ink-muted sm:text-sm lg:text-lg"
         >
           {aboutContent.label}
         </motion.p>
@@ -46,7 +46,7 @@ export default function AboutSection() {
       </div>
       <motion.div
         variants={fadeInUpItem}
-        className="col-span-12 mx-auto w-full min-w-0 break-words px-2 text-center font-display text-base font-medium leading-7 text-ink sm:max-w-lg sm:px-0 sm:text-lg sm:leading-8 md:max-w-xl md:text-xl md:leading-9 lg:col-span-7 lg:max-w-2xl lg:text-left lg:text-3xl lg:leading-[1.4]"
+        className="col-span-12 mx-auto w-full min-w-0 break-words px-2 text-center font-tagline text-base font-medium leading-7 text-ink sm:max-w-lg sm:px-0 sm:text-lg sm:leading-8 md:max-w-xl md:text-xl md:leading-9 lg:col-span-7 lg:max-w-2xl lg:text-left lg:text-3xl lg:leading-[1.4]"
       >
         {aboutContent.headline}
       </motion.div>

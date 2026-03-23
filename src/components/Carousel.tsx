@@ -40,8 +40,7 @@ const DEFAULT_ITEMS: CarouselItem[] = [
     description: "Cool text animations for your projects.",
     id: 1,
     icon: <FiFileText className="h-[16px] w-[16px] text-white" />,
-    imageUrl:
-      "https://images.unsplash.com/photo-1481277542470-605612bd2d61?auto=format&fit=crop&w=900&q=80",
+    imageUrl: "/assets/images/home/image3.jpg",
     primaryLink: {
       label: "View Portfolio",
       href: "https://example.com",
@@ -52,8 +51,7 @@ const DEFAULT_ITEMS: CarouselItem[] = [
     description: "Smooth animations for your projects.",
     id: 2,
     icon: <FiCircle className="h-[16px] w-[16px] text-white" />,
-    imageUrl:
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",
+    imageUrl: "/assets/images/home/image4.jpg",
     primaryLink: {
       label: "GitHub Repo",
       href: "https://github.com",
@@ -64,8 +62,7 @@ const DEFAULT_ITEMS: CarouselItem[] = [
     description: "Reusable components for your projects.",
     id: 3,
     icon: <FiLayers className="h-[16px] w-[16px] text-white" />,
-    imageUrl:
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80",
+    imageUrl: "/assets/images/home/image3.jpg",
     primaryLink: {
       label: "Case Study",
       href: "https://example.com",
@@ -76,8 +73,7 @@ const DEFAULT_ITEMS: CarouselItem[] = [
     description: "Beautiful backgrounds and patterns for your projects.",
     id: 4,
     icon: <FiLayout className="h-[16px] w-[16px] text-white" />,
-    imageUrl:
-      "https://images.unsplash.com/photo-1526498460520-4c246339dccb?auto=format&fit=crop&w=900&q=80",
+    imageUrl: "/assets/images/home/image4.jpg",
     primaryLink: {
       label: "View Portfolio",
       href: "https://example.com",
@@ -88,8 +84,7 @@ const DEFAULT_ITEMS: CarouselItem[] = [
     description: "Common UI components are coming soon!",
     id: 5,
     icon: <FiCode className="h-[16px] w-[16px] text-white" />,
-    imageUrl:
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",
+    imageUrl: "assets/images/home/image3.jpg",
     primaryLink: {
       label: "GitHub Repo",
       href: "https://github.com",
@@ -164,8 +159,8 @@ function CarouselItem({
         </span>
       </div>
       <div className="relative p-5 w-full">
-        <div className="mb-1 font-black text-lg text-white">{item.title}</div>
-        <p className="text-sm text-white/90">{item.description}</p>
+        <div className="mb-1 font-heading text-xl text-white">{item.title}</div>
+        <p className="text-base font-text text-white/90">{item.description}</p>
 
         {/* {item.primaryLink ? (
           <a
@@ -291,15 +286,15 @@ export default function Carousel({
 
   const handleDragEnd = (
     _: MouseEvent | TouchEvent | PointerEvent,
-    info: PanInfo
+    info: PanInfo,
   ): void => {
     const { offset, velocity } = info;
     const direction =
       offset.x < -DRAG_BUFFER || velocity.x < -VELOCITY_THRESHOLD
         ? 1
         : offset.x > DRAG_BUFFER || velocity.x > VELOCITY_THRESHOLD
-        ? -1
-        : 0;
+          ? -1
+          : 0;
 
     if (direction === 0) return;
 
@@ -323,8 +318,8 @@ export default function Carousel({
     items.length === 0
       ? 0
       : loop
-      ? (position - 1 + items.length) % items.length
-      : Math.min(position, items.length - 1);
+        ? (position - 1 + items.length) % items.length
+        : Math.min(position, items.length - 1);
 
   return (
     <div
@@ -389,8 +384,8 @@ export default function Carousel({
                     ? "bg-white"
                     : "bg-[#333333]"
                   : round
-                  ? "bg-[#555]"
-                  : "bg-[rgba(51,51,51,0.4)]"
+                    ? "bg-[#555]"
+                    : "bg-[rgba(51,51,51,0.4)]"
               }`}
               animate={{
                 scale: activeIndex === index ? 1.2 : 1,

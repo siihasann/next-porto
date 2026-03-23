@@ -19,7 +19,7 @@ const PastClientsSection: React.FC = () => {
     {
       id: 1,
       number: "01",
-      name: "FACEBOOK",
+      name: "Facebook",
       description:
         "Through our community practice, helping one of the world's leading technology companies advise and mentor for an ongoing global initiative that spotlights inspirational YouTube creators.",
       image:
@@ -28,7 +28,7 @@ const PastClientsSection: React.FC = () => {
     {
       id: 2,
       number: "02",
-      name: "NETFLIX",
+      name: "Netflix",
       description:
         "Through our community practice, helping one of the world's leading technology companies advise and mentor for an ongoing global initiative that spotlights inspirational YouTube creators.",
       image:
@@ -37,7 +37,7 @@ const PastClientsSection: React.FC = () => {
     {
       id: 3,
       number: "03",
-      name: "GOOGLE",
+      name: "Google",
       description:
         "Through our community practice, helping one of the world's leading technology companies advise and mentor for an ongoing global initiative that spotlights inspirational YouTube creators.",
       image: "",
@@ -45,7 +45,7 @@ const PastClientsSection: React.FC = () => {
     {
       id: 4,
       number: "04",
-      name: "AMAZON",
+      name: "Amazon",
       description:
         "Through our community practice, helping one of the world's leading technology companies advise and mentor for an ongoing global initiative that spotlights inspirational YouTube creators.",
       image: "",
@@ -63,7 +63,7 @@ const PastClientsSection: React.FC = () => {
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <motion.div className="mb-16" variants={fadeInUpItem}>
-          <h2 className="mb-4 text-xs font-medium tracking-[0.35em] text-gray-400 sm:text-sm lg:text-lg">
+          <h2 className="mb-4 text-xs font-text text-gray-400 sm:text-sm lg:text-lg">
             PAST CLIENT
           </h2>
         </motion.div>
@@ -81,7 +81,7 @@ const PastClientsSection: React.FC = () => {
               <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-12">
                 {/* Number */}
                 <div className="md:col-span-1">
-                  <span className="text-xl font-light text-gray-300 sm:text-2xl">
+                  <span className="text-xl font-light font-heading text-gray-300 sm:text-2xl">
                     {client.number}
                   </span>
                 </div>
@@ -131,19 +131,19 @@ const PastClientsSection: React.FC = () => {
                 <div className="md:col-span-6">
                   <h3
                     className={`
-                      mb-4 text-3xl font-bold tracking-wider sm:mb-6 sm:text-4xl lg:text-5xl
+                      mb-4 text-3xl font-text uppercase tracking-wider sm:mb-6 sm:text-4xl lg:text-5xl
                       transition-colors duration-300
                       ${
                         hoveredClient === client.id
-                          ? "md:text-gray-900"
+                          ? "md:text-gray-700"
                           : "md:text-gray-400"
                       }
-                      text-gray-900 md:text-gray-400
+                      text-gray-700 md:text-gray-400
                     `}
                   >
                     {client.name}
                   </h3>
-                  <p className="max-w-2xl text-sm leading-relaxed text-gray-600 sm:text-base lg:text-lg">
+                  <p className="max-w-2xl font-text text-sm leading-relaxed text-gray-600 sm:text-base lg:text-lg">
                     {client.description}
                   </p>
                 </div>

@@ -40,6 +40,7 @@ const projects = [
 export default function ServicesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeProject = projects[activeIndex];
+  const [highlightedService, setHighlightedService] = useState(1);
   const [carouselSize, setCarouselSize] = useState({
     width: 1230,
     height: 600,
@@ -91,37 +92,66 @@ export default function ServicesSection() {
       viewport={{ once: true, amount: 0.3 }}
     >
       <motion.div
-        className="mx-auto flex max-w-7xl flex-col items-center gap-8 text-center"
+        className="mx-auto flex max-w-7xl flex-col items-center gap-5 text-center"
         variants={fadeInUpItem}
       >
         <motion.p
+          className="text-xs font-text font-light tracking-[0.12em] text-white/78 sm:text-sm lg:text-lg"
           variants={fadeInUpItem}
-          className="text-xs font-semibold uppercase tracking-[0.3em] text-zinc-400 sm:text-sm lg:text-lg"
         >
-          What I&apos;m Doing
+          Expertise
         </motion.p>
-        <motion.div
-          variants={staggerContainer}
-          className="font-display text-xl font-medium uppercase tracking-[0.08em] sm:text-3xl lg:text-6xl"
+
+        <motion.h2
+          className="max-w-5xl font-text text-4xl font-medium tracking-[-0.06em] text-white sm:text-6xl lg:text-[5.7rem] lg:leading-[0.95]"
+          variants={fadeInUpItem}
         >
-          {services.map((service) => (
-            <motion.div
-              key={service.label}
-              variants={fadeInUpItem}
-              className="group mt-5 flex flex-wrap items-center justify-center gap-3 sm:mt-7 sm:gap-4"
-            >
-              <span className="pointer-events-none flex h-7 w-7 items-center justify-center rounded-full border border-white/20 text-orange-200 opacity-0 transition duration-300 group-hover:translate-x-1 group-hover:opacity-100 sm:h-9 sm:w-9 lg:h-14 lg:w-14">
-                <service.Icon
-                  className="h-3.5 w-3.5 sm:h-4 sm:w-4 lg:h-5 lg:w-5"
-                  aria-hidden="true"
-                />
-              </span>
-              <span className="transition duration-300 group-hover:text-orange-200">
-                {service.label}
-              </span>
-              <span className="h-px w-0 bg-white/40 transition-all duration-300 group-hover:w-4 sm:group-hover:w-6 md:group-hover:w-8 lg:group-hover:w-10" />
-            </motion.div>
-          ))}
+          My Core Capability
+        </motion.h2>
+
+        <motion.p
+          className="max-w-2xl font-text text-sm leading-7 text-white/65 sm:text-base"
+          variants={fadeInUpItem}
+        >
+          Here&apos;s what I&apos;ve mastered over the years and continue to
+          refine through every project I build.
+        </motion.p>
+
+        <motion.div
+          className="mt-4 flex w-full flex-col items-center"
+          variants={staggerContainer}
+        >
+          {services.map((service, index) => {
+            const isHighlighted = highlightedService === index;
+
+            return (
+              <motion.button
+                type="button"
+                key={service.label}
+                variants={fadeInUpItem}
+                onMouseEnter={() => setHighlightedService(index)}
+                onFocus={() => setHighlightedService(index)}
+                onClick={() => setHighlightedService(index)}
+                className="block w-full cursor-pointer border-0 bg-transparent px-0 py-1 text-center outline-none sm:py-2"
+              >
+                <span
+                  className="inline-block font-text text-[2.15rem] font-medium uppercase tracking-[-0.07em] text-transparent transition-all duration-300 sm:text-[3.35rem] lg:text-[5.15rem] lg:leading-[0.95]"
+                  style={{
+                    backgroundClip: "text",
+                    WebkitBackgroundClip: "text",
+                    backgroundImage: isHighlighted
+                      ? "linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.94) 100%)"
+                      : "linear-gradient(180deg, rgba(255,255,255,0.34) 0%, rgba(255,255,255,0.08) 100%)",
+                    textShadow: isHighlighted
+                      ? "0 0 22px rgba(255,255,255,0.08)"
+                      : "none",
+                  }}
+                >
+                  {service.label}
+                </span>
+              </motion.button>
+            );
+          })}
         </motion.div>
       </motion.div>
 

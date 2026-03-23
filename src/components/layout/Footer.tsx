@@ -2,6 +2,7 @@
 
 import React from "react";
 import { ArrowRight } from "lucide-react";
+import HighlightButton from "../ui/HighlightButton";
 
 const Footer: React.FC = () => {
   const navigationLinks = [
@@ -30,13 +31,13 @@ const Footer: React.FC = () => {
       {/* CTA Section */}
       <div className="border-b border-gray-800">
         <div className="mx-auto max-w-7xl px-4 py-10 text-center sm:px-8 sm:py-12 lg:px-16 lg:py-14">
-          <h2 className="mb-8 text-3xl font-semibold sm:text-4xl lg:mb-12 lg:text-7xl xl:text-8xl">
+          <h2 className="mb-8 text-3xl font-heading font-medium sm:text-4xl lg:mb-12 lg:text-7xl xl:text-7xl">
             Have a Cool
             <br />
             Project?
           </h2>
 
-          <button className="group inline-flex items-center gap-3 rounded-full bg-orange-500 px-5 py-2 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-orange-600 hover:shadow-xl sm:px-6 sm:py-2.5 sm:text-base lg:text-lg">
+          {/* <button className="group inline-flex items-center gap-3 rounded-full bg-orange-500 px-5 py-2 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-orange-600 hover:shadow-xl sm:px-6 sm:py-2.5 sm:text-base lg:text-lg">
             Contact Me
             <div className="bg-white rounded-full p-2 transition-transform duration-300 group-hover:translate-x-1">
               <ArrowRight
@@ -45,7 +46,8 @@ const Footer: React.FC = () => {
                 strokeWidth={2.5}
               />
             </div>
-          </button>
+          </button> */}
+          <HighlightButton text="Contact Me" />
         </div>
       </div>
 

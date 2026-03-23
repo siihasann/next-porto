@@ -99,19 +99,19 @@ export default function ClientReviewSection() {
         <motion.div className="text-center" variants={fadeInUpItem}>
           <motion.p
             variants={fadeInUpItem}
-            className="text-xs font-semibold uppercase tracking-[0.3em] text-zinc-400 sm:tracking-[0.4em]"
+            className="text-xs font-text font-light tracking-[0.12em] text-gray-400 sm:text-sm lg:text-lg"
           >
             Client Reviews
           </motion.p>
           <motion.h2
             variants={fadeInUpItem}
-            className="font-display mt-4 text-2xl font-semibold text-ink sm:text-4xl lg:text-5xl"
+            className="font-heading mt-4 text-2xl font-semibold text-ink sm:text-4xl lg:text-5xl"
           >
             Kind words from teams we ship with
           </motion.h2>
           <motion.p
             variants={fadeInUpItem}
-            className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-ink-muted sm:text-base"
+            className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-ink-muted sm:text-base font-text"
           >
             Feedback from partners who trusted me with strategy, visual systems,
             and full-stack execution.
@@ -144,7 +144,7 @@ export default function ClientReviewSection() {
                         decoding="async"
                       />
                       <div>
-                        <div className="flex items-center gap-1 text-sm font-semibold text-ink">
+                        <div className="flex items-center gap-1 text-sm font-semibold font-heading text-ink">
                           {card.name}
                           <svg
                             className="mt-0.5 h-3 w-3 fill-blue-500"
@@ -158,12 +158,12 @@ export default function ClientReviewSection() {
                             />
                           </svg>
                         </div>
-                        <span className="text-xs text-ink-muted">
+                        <span className="text-xs font-heading text-ink-muted">
                           {card.handle}
                         </span>
                       </div>
                     </div>
-                    <p className="mt-4 text-sm leading-6 text-zinc-700">
+                    <p className="mt-4 text-sm font-tagline leading-6 text-zinc-700">
                       {card.quote}
                     </p>
                   </article>
