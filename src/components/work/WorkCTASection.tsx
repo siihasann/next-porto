@@ -26,11 +26,11 @@ export default function WorkCTASection() {
           </h2>
           <p className="max-w-xl text-sm leading-7 text-zinc-300 sm:text-base">
             I'm always open to new opportunities, collaborations, and exciting
-            challenges. Let's work together to turn ideas into meaningful digital
-            products.
+            challenges. Let's work together to turn ideas into meaningful
+            digital products.
           </p>
         </div>
-        <HighlightButton text="Contact Me" variant="orange" />
+        <HighlightButton text="Contact Me" variant="green" />
       </motion.div>
     </motion.section>
   );

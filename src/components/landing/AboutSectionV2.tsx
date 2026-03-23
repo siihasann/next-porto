@@ -1,7 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { fadeInUpItem, staggerContainer } from "@/lib/animation-templates";
+import {
+  fadeIn,
+  fadeInUpItem,
+  staggerContainer,
+} from "@/lib/animation-templates";
 
 const aboutV2Content = {
   label: "About Me",
@@ -35,7 +39,7 @@ export default function AboutSectionV2() {
         </motion.div>
 
         <motion.div
-          variants={fadeInUpItem}
+          variants={fadeIn}
           className="max-w-4xl font-text text-[2rem] font-medium leading-[1.18] tracking-[-0.04em] text-ink sm:text-[2.6rem] lg:text-[3.8rem]"
         >
           {aboutV2Content.headlineLead}{" "}
