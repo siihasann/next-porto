@@ -11,6 +11,172 @@ const springConfig = {
   restSpeed: 0.001, // Speed threshold untuk smoothness
 };
 
+export type RevealDirection = "left" | "right" | "top" | "bottom";
+
+type SlideDirection = RevealDirection | "up" | "down";
+
+type DirectionalRevealOptions = {
+  direction?: RevealDirection;
+  distance?: number;
+  delay?: number;
+  opacity?: number;
+  scale?: number;
+};
+
+type SlideInCustom = {
+  direction?: SlideDirection;
+  distance?: number;
+  delay?: number;
+  opacity?: number;
+  scale?: number;
+};
+
+type TypewriterOptions = {
+  blur?: number;
+  y?: number;
+  duration?: number;
+  staggerChildren?: number;
+  delayChildren?: number;
+};
+
+type TypewriterAnimation = {
+  container: Variants;
+  item: Variants;
+};
+
+const getDirectionalOffset = (direction: SlideDirection, distance: number) => {
+  switch (direction) {
+    case "right":
+      return { x: distance, y: 0 };
+    case "top":
+    case "down":
+      return { x: 0, y: -distance };
+    case "bottom":
+    case "up":
+      return { x: 0, y: distance };
+    case "left":
+    default:
+      return { x: -distance, y: 0 };
+  }
+};
+
+const createVisibleState = (delay = 0) => ({
+  x: 0,
+  y: 0,
+  opacity: 1,
+  scale: 1,
+  transition: {
+    ...springConfig,
+    delay,
+  },
+});
+
+export const createDirectionalReveal = ({
+  direction = "left",
+  distance = 60,
+  delay = 0,
+  opacity = 0,
+  scale = 0.95,
+}: DirectionalRevealOptions = {}): Variants => {
+  const { x, y } = getDirectionalOffset(direction, distance);
+
+  return {
+    hidden: {
+      x,
+      y,
+      opacity,
+      scale,
+    },
+    visible: createVisibleState(delay),
+  };
+};
+
+export const revealFromLeft = createDirectionalReveal({ direction: "left" });
+export const revealFromRight = createDirectionalReveal({ direction: "right" });
+export const revealFromTop = createDirectionalReveal({ direction: "top" });
+export const revealFromBottom = createDirectionalReveal({ direction: "bottom" });
+
+export const createTypewriterAnimation = ({
+  blur = 10,
+  y = 18,
+  duration = 0.42,
+  staggerChildren = 0.028,
+  delayChildren = 0.06,
+}: TypewriterOptions = {}): TypewriterAnimation => ({
+  container: {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren,
+        delayChildren,
+      },
+    },
+  },
+  item: {
+    hidden: {
+      opacity: 0,
+      y,
+      filter: `blur(${blur}px)`,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: {
+        duration,
+        ease: smoothEase,
+      },
+    },
+  },
+});
+
+export const smoothTypewriter = createTypewriterAnimation();
+
+export const smoothStaggerContainer: Variants = {
+  hidden: {
+    opacity: 1,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.08,
+    },
+  },
+};
+
+export const smoothRevealItem: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 28,
+    scale: 0.985,
+    filter: "blur(12px)",
+  },
+  visible: (custom: number = 0) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.72,
+      delay: custom * 0.06,
+      ease: smoothEase,
+    },
+  }),
+};
+
+export const smoothHoverTransition = {
+  type: "spring" as const,
+  stiffness: 220,
+  damping: 26,
+  mass: 0.8,
+};
+
+export const smoothStateTransition = {
+  duration: 0.5,
+  ease: smoothEase,
+};
+
 // --- PAGE TRANSITION (Konten Muncul Samar-samar) ---
 export const pageTransition: Variants = {
   initial: {
@@ -193,40 +359,23 @@ export const fadeIn: Variants = {
 
 // --- Slide In Animation (Perfectly Smooth) ---
 export const slideIn: Variants = {
-  hidden: (custom: { direction: string }) => {
-    const offset = 60;
-    const config: any = { opacity: 0, scale: 0.95 };
+  hidden: (custom: SlideInCustom = {}) => {
+    const {
+      direction = "left",
+      distance = 60,
+      opacity = 0,
+      scale = 0.95,
+    } = custom;
+    const { x, y } = getDirectionalOffset(direction, distance);
 
-    switch (custom.direction) {
-      case "right":
-        config.x = offset;
-        break;
-      case "up":
-        config.y = offset;
-        break;
-      case "down":
-        config.y = -offset;
-        break;
-      case "left":
-      default:
-        config.x = -offset;
-    }
-    return config;
+    return {
+      x,
+      y,
+      opacity,
+      scale,
+    };
   },
-  visible: {
-    x: 0,
-    y: 0,
-    opacity: 1,
-    scale: 1,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 22,
-      mass: 0.8,
-      restDelta: 0.001,
-      restSpeed: 0.001,
-    },
-  },
+  visible: (custom: SlideInCustom = {}) => createVisibleState(custom.delay),
 };
 
 // --- Scale Animation (Bonus - Super Smooth) ---

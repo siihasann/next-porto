@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import {
-  fadeIn,
+  createTypewriterAnimation,
   fadeInUpItem,
+  slideIn,
   staggerContainer,
 } from "@/lib/animation-templates";
 
@@ -18,6 +19,25 @@ const aboutV2Content = {
   description:
     "Every product I build starts with intent. Whether it is a brand system, a polished interface, or a front-end build, I bring clarity, empathy, and clean execution to the work.",
 };
+
+const aboutHeadlineWords = [
+  ...aboutV2Content.headlineLead.split(" ").map((word) => ({
+    word,
+    muted: false,
+  })),
+  ...aboutV2Content.headlineMuted.split(" ").map((word) => ({
+    word,
+    muted: true,
+  })),
+];
+
+const aboutHeadlineTypewriter = createTypewriterAnimation({
+  blur: 12,
+  y: 20,
+  duration: 0.8,
+  staggerChildren: 0.03,
+  delayChildren: 0.1,
+});
 
 export default function AboutSectionV2() {
   return (
@@ -38,16 +58,35 @@ export default function AboutSectionV2() {
           <span>{aboutV2Content.label}</span>
         </motion.div>
 
-        <motion.div
-          variants={fadeIn}
+        <motion.h2
+          variants={aboutHeadlineTypewriter.container}
+          aria-label={`${aboutV2Content.headlineLead} ${aboutV2Content.headlineMuted}`}
           className="max-w-4xl font-text text-[2rem] font-medium leading-[1.18] tracking-[-0.04em] text-ink sm:text-[2.6rem] lg:text-[3.8rem]"
         >
-          {aboutV2Content.headlineLead}{" "}
-          <span className="text-black/22">{aboutV2Content.headlineMuted}</span>
-        </motion.div>
+          <span
+            aria-hidden="true"
+            className="inline-flex flex-wrap gap-x-[0.16em] gap-y-[0.04em]"
+          >
+            {aboutHeadlineWords.map(({ word, muted }, index) => (
+              <motion.span
+                key={`${word}-${index}`}
+                variants={aboutHeadlineTypewriter.item}
+                className={`inline-block will-change-transform ${
+                  muted ? "text-black/22" : ""
+                }`}
+              >
+                {word}
+              </motion.span>
+            ))}
+          </span>
+        </motion.h2>
 
         <motion.div
-          variants={fadeInUpItem}
+          variants={slideIn}
+          custom={{ direction: "bottom", distance: 80, delay: 0.2 }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.9 }}
           className="w-full max-w-[280px] overflow-hidden rounded-[2px] bg-white shadow-[0_18px_40px_-28px_rgba(15,23,42,0.4)]"
         >
           <img
@@ -60,7 +99,11 @@ export default function AboutSectionV2() {
         </motion.div>
 
         <motion.div
-          variants={fadeInUpItem}
+          variants={slideIn}
+          custom={{ direction: "bottom", distance: 80, delay: 0.2 }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.9 }}
           className="max-w-xl font-text text-base leading-8 text-ink-muted sm:ml-auto sm:text-lg lg:max-w-md lg:pt-8"
         >
           {aboutV2Content.description}
