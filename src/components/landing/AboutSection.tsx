@@ -5,9 +5,9 @@ import { fadeInUpItem, staggerContainer } from "@/lib/animation-templates";
 
 const aboutContent = {
   label: "About Me",
-  name: "Donnie Alfian",
-  role: "Visual Designer",
-  location: "Jakarta, Indonesia",
+  name: "Hasan Najib",
+  role: "Full-Stack Developer",
+  location: "Semarang, Indonesia",
   image:
     "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&auto=format&fit=crop&q=80",
   headline:

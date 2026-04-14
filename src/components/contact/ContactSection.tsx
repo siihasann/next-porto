@@ -150,7 +150,7 @@ const ContactSection: React.FC = () => {
                 <button
                   onClick={handleSubmit}
                   disabled={status === "loading"}
-                  className="w-full rounded-2xl bg-orange-500 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:bg-orange-600 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70 sm:py-5"
+                  className="w-full rounded-2xl bg-white py-4 font-semibold text-black shadow-lg transition-all duration-300 hover:scale-[1.02] hover:bg-white/90 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70 sm:py-5"
                 >
                   {status === "loading" ? "Sending..." : "Submit"}
                 </button>

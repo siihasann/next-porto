@@ -24,7 +24,7 @@ const heroHighlights = [
     id: "identity-brand",
     eyebrow: "Identity & Brand",
     title: "Branding Project",
-    image: "/assets/images/home/image1.jpg",
+    image: "/assets/images/home/content-home1.png",
     overlay:
       "radial-gradient(circle at top, rgba(42,42,42,0.9) 0%, transparent 55%)",
   },
@@ -32,7 +32,7 @@ const heroHighlights = [
     id: "product-ui",
     eyebrow: "Product & UI",
     title: "Branding Project",
-    image: "/assets/images/home/image2.jpg",
+    image: "/assets/images/home/barongsolo.png",
     overlay:
       "radial-gradient(circle at top right, rgba(48,48,48,0.9) 0%, transparent 60%)",
   },
@@ -58,8 +58,8 @@ export default function HeroSection() {
           saturation={1}
         />
       </div>
-      <div className="flex items-center justify-center overflow-visible px-10">
-        <TextHoverEffect text="SansLabs" />
+      <div className="mx-auto flex w-full max-w-[1900px] items-center justify-center overflow-visible px-1 sm:px-4 lg:px-5">
+        <TextHoverEffect text="SANS LABS" />
       </div>
 
       {/* <motion.div
@@ -107,11 +107,7 @@ export default function HeroSection() {
             custom={index}
             variants={fadeInUpItem}
             // whileHover="hover"
-            className={`group relative h-72 overflow-hidden p-5 shadow-[0_20px_45px_-25px_rgba(0,0,0,0.9)] sm:h-80 sm:p-6 lg:h-96 ${
-              index === 0
-                ? "rounded-3xl bg-[linear-gradient(135deg,rgba(20,20,20,0.9),rgba(0,0,0,0.7))]"
-                : "rounded-[24px] bg-[linear-gradient(135deg,rgba(18,18,18,0.95),rgba(8,8,8,0.95))]"
-            }`}
+            className={`group relative h-72 overflow-hidden p-5 shadow-[0_20px_45px_-25px_rgba(0,0,0,0.9)] sm:h-80 sm:p-6 lg:h-96 `}
           >
             <motion.div
               className="absolute inset-0 opacity-70"

@@ -12,12 +12,12 @@ const aboutV2Content = {
   label: "About Me",
   image:
     "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=900&auto=format&fit=crop&q=80",
-  imageAlt: "Portrait working profile",
+  imageAlt: "Full-Stack Developer",
   headlineLead:
-    "I'm a multidisciplinary designer and developer focused on turning ideas into",
-  headlineMuted: "visual experiences that feel clear, useful, and memorable.",
+    "I am a Diploma (D3) graduate in Information Systems from Bina Sarana Informatika University",
+  headlineMuted: "with over one year of experience as a Full Stack Developer",
   description:
-    "Every product I build starts with intent. Whether it is a brand system, a polished interface, or a front-end build, I bring clarity, empathy, and clean execution to the work.",
+    "I am highly motivated, adaptable, and eager to continuously learn and take on new challenges in the field of technology development.",
 };
 
 const aboutHeadlineWords = [

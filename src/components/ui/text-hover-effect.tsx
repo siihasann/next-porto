@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useId, useRef, useState } from "react";
 import { motion } from "motion/react";
 
 export const TextHoverEffect = ({
@@ -11,72 +11,107 @@ export const TextHoverEffect = ({
   automatic?: boolean;
 }) => {
   const svgRef = useRef<SVGSVGElement>(null);
-  const [cursor, setCursor] = useState({ x: 0, y: 0 });
+  const baseId = useId().replace(/:/g, "");
+  const gradientId = `${baseId}-text-gradient`;
+  const revealMaskId = `${baseId}-reveal-mask`;
+  const maskId = `${baseId}-text-mask`;
+  const label = text.trim();
+  const characterCount = Math.max(label.length, 4);
+  const viewBoxWidth = Math.max(420, characterCount * 86);
+  const viewBoxHeight = 170;
+  const fontSize = characterCount > 10 ? 96 : 124;
+  const centerPosition = {
+    cx: viewBoxWidth / 2,
+    cy: viewBoxHeight / 2,
+  };
+  const revealRadius = Math.max(72, viewBoxWidth * 0.12);
+  const dashLength = viewBoxWidth * 2;
   const [hovered, setHovered] = useState(false);
-  const [maskPosition, setMaskPosition] = useState({ cx: "50%", cy: "50%" });
+  const [maskPosition, setMaskPosition] = useState(centerPosition);
 
   useEffect(() => {
-    if (svgRef.current && cursor.x !== null && cursor.y !== null) {
-      const svgRect = svgRef.current.getBoundingClientRect();
-      const cxPercentage = ((cursor.x - svgRect.left) / svgRect.width) * 100;
-      const cyPercentage = ((cursor.y - svgRect.top) / svgRect.height) * 100;
-      setMaskPosition({
-        cx: `${cxPercentage}%`,
-        cy: `${cyPercentage}%`,
-      });
+    setMaskPosition({
+      cx: viewBoxWidth / 2,
+      cy: viewBoxHeight / 2,
+    });
+  }, [viewBoxHeight, viewBoxWidth]);
+
+  const updateMaskPosition = (clientX: number, clientY: number) => {
+    if (!svgRef.current) {
+      return;
     }
-  }, [cursor]);
+
+    const svgRect = svgRef.current.getBoundingClientRect();
+    const nextCx = ((clientX - svgRect.left) / svgRect.width) * viewBoxWidth;
+    const nextCy = ((clientY - svgRect.top) / svgRect.height) * viewBoxHeight;
+
+    setMaskPosition({
+      cx: Math.max(0, Math.min(viewBoxWidth, nextCx)),
+      cy: Math.max(0, Math.min(viewBoxHeight, nextCy)),
+    });
+  };
 
   return (
     <svg
       ref={svgRef}
-      width="100%"
-      height="100%"
-      viewBox="0 0 300 100"
+      viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
       overflow="visible"
       xmlns="http://www.w3.org/2000/svg"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onMouseMove={(e) => setCursor({ x: e.clientX, y: e.clientY })}
-      className="select-none overflow-visible"
+      preserveAspectRatio="xMidYMid meet"
+      onPointerEnter={(event) => {
+        setHovered(true);
+        updateMaskPosition(event.clientX, event.clientY);
+      }}
+      onPointerLeave={() => {
+        setHovered(false);
+        setMaskPosition(centerPosition);
+      }}
+      onPointerMove={(event) =>
+        updateMaskPosition(event.clientX, event.clientY)
+      }
+      className="block h-auto w-full select-none overflow-visible"
+      style={{ textRendering: "geometricPrecision" }}
+      role="img"
+      aria-label={label}
     >
       <defs>
         <linearGradient
-          id="textGradient"
+          id={gradientId}
           gradientUnits="userSpaceOnUse"
-          cx="50%"
-          cy="50%"
-          r="25%"
+          x1="0"
+          y1={viewBoxHeight / 2}
+          x2={viewBoxWidth}
+          y2={viewBoxHeight / 2}
         >
-          {hovered && (
-            <>
-              <stop offset="0%" stopColor="#eab308" />
-              <stop offset="25%" stopColor="#ef4444" />
-              <stop offset="50%" stopColor="#3b82f6" />
-              <stop offset="75%" stopColor="#06b6d4" />
-              <stop offset="100%" stopColor="#8b5cf6" />
-            </>
-          )}
+          <stop offset="0%" stopColor="#eab308" />
+          <stop offset="25%" stopColor="#ef4444" />
+          <stop offset="50%" stopColor="#3b82f6" />
+          <stop offset="75%" stopColor="#06b6d4" />
+          <stop offset="100%" stopColor="#8b5cf6" />
         </linearGradient>
 
         <motion.radialGradient
-          id="revealMask"
+          id={revealMaskId}
           gradientUnits="userSpaceOnUse"
-          r="20%"
-          initial={{ cx: "50%", cy: "50%" }}
+          r={revealRadius}
+          initial={centerPosition}
           animate={maskPosition}
-          transition={{ duration: duration ?? 0, ease: "easeOut" }}
+          transition={{ duration: duration ?? 0.18, ease: "easeOut" }}
         >
           <stop offset="0%" stopColor="white" />
           <stop offset="100%" stopColor="black" />
         </motion.radialGradient>
-        <mask id="textMask">
+        <mask
+          id={maskId}
+          maskUnits="userSpaceOnUse"
+          maskContentUnits="userSpaceOnUse"
+        >
           <rect
-            x="-50%"
+            x="0"
             y="0"
-            width="200%"
-            height="100%"
-            fill="url(#revealMask)"
+            width={viewBoxWidth}
+            height={viewBoxHeight}
+            fill={`url(#${revealMaskId})`}
           />
         </mask>
       </defs>
@@ -85,42 +120,68 @@ export const TextHoverEffect = ({
         y="50%"
         textAnchor="middle"
         dominantBaseline="middle"
-        strokeWidth="0.03"
-        className="fill-transparent stroke-neutral-200 font-[helvetica] text-7xl font-bold dark:stroke-neutral-800"
-        style={{ opacity: hovered ? 0.07 : 0 }}
+        fontFamily="Helvetica, Arial, sans-serif"
+        fontSize={fontSize}
+        fontWeight={700}
+        fill="transparent"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        vectorEffect="non-scaling-stroke"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        paintOrder="stroke"
+        className="text-neutral-200 dark:text-neutral-800"
+        style={{ opacity: hovered ? 0.12 : 0 }}
       >
-        {text}
+        {label}
       </text>
       <motion.text
         x="50%"
         y="50%"
         textAnchor="middle"
         dominantBaseline="middle"
-        strokeWidth="0.09"
-        className="fill-transparent stroke-neutral-200 font-[helvetica] text-7xl font-bold dark:stroke-neutral-800"
-        initial={{ strokeDashoffset: 1000, strokeDasharray: 1000 }}
+        fontFamily="Helvetica, Arial, sans-serif"
+        fontSize={fontSize}
+        fontWeight={700}
+        // fill="transparent"
+        stroke="currentColor"
+        strokeWidth={0.7}
+        vectorEffect="non-scaling-stroke"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        paintOrder="stroke"
+        className="text-neutral-200 dark:text-neutral-800"
+        initial={{ strokeDashoffset: dashLength, strokeDasharray: dashLength }}
         animate={{
           strokeDashoffset: 0,
-          strokeDasharray: 1000,
+          strokeDasharray: dashLength,
         }}
         transition={{
-          duration: 4,
+          duration: 3,
           ease: "easeInOut",
         }}
       >
-        {text}
+        {label}
       </motion.text>
       <text
         x="50%"
         y="50%"
         textAnchor="middle"
         dominantBaseline="middle"
-        stroke="url(#textGradient)"
-        strokeWidth="0.3"
-        mask="url(#textMask)"
-        className="fill-transparent font-[helvetica] text-7xl font-bold"
+        fontFamily="Helvetica, Arial, sans-serif"
+        fontSize={fontSize}
+        fontWeight={700}
+        fill="transparent"
+        stroke={`url(#${gradientId})`}
+        strokeWidth={1.5}
+        vectorEffect="non-scaling-stroke"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        paintOrder="stroke"
+        mask={`url(#${maskId})`}
+        style={{ opacity: hovered ? 1 : 0 }}
       >
-        {text}
+        {label}
       </text>
     </svg>
   );

@@ -11,10 +11,11 @@ import {
 } from "@/lib/animation-templates";
 
 const services = [
-  { label: "UI/UX Design" },
-  { label: "Brand Identity" },
-  { label: "Web Development" },
-  { label: "Art Direction" },
+  { label: "FRONTEND DEVELOPMENT" },
+  { label: "UI/UX IMPLEMENTATION" },
+  { label: "WEB PERFORMANCE" },
+  { label: "API INTEGRATION" },
+  { label: "SEO Optimization" },
 ];
 
 const serviceLabelClass =

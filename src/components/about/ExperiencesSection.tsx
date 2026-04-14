@@ -28,9 +28,9 @@ export function ExperiencesSection() {
 
   const data = [
     {
-      title: "2024",
+      title: "Full-Stack Developer at Crackin'Code Studio",
       paragraphs: [
-        "Built and launched Aceternity UI and Aceternity UI Pro from scratch.",
+        "Crackin'Code Studio is a software development agency based in Semarang, specializing in web and mobile applications, serving international clients across various countries.",
       ],
       images: [
         "https://assets.aceternity.com/templates/startup-1.webp",
@@ -38,25 +38,21 @@ export function ExperiencesSection() {
         "https://assets.aceternity.com/templates/startup-3.webp",
         "https://assets.aceternity.com/templates/startup-4.webp",
       ],
-      bullets: [],
+      bullets: [
+        "Developed and maintained end-to-end web applications for multiple international clients.",
+        "Collaborated with Project Managers and cross-functional teams to gather technical requirements and provide daily progress updates.",
+        "Managed multiple projects simultaneously using structured workflows and Agile methodologies.",
+        "Full-Stack: Next.js, Nuxt.js, Laravel (including Filament & Inertia.js), Frontend: React.js (Vite), Vue.js, Backend: Node.js, Express.js, NestJS, PHP (Laravel), Database: PostgreSQL, MySQL, Supabase (with Prisma ORM), Styling: Tailwind CSS, Bootstrap, CSS, Version Control: Git (GitHub, GitLab)Proficient in implementing Git Flow for professional team-based development.",
+        "Experienced in VPS server management, including deployment and configuration across platforms such as DigitalOcean (Droplets, App Platform), Akamai, Alibaba Cloud, AWS EC2 and Heroku.",
+        "Skilled in domain and DNS management using Cloudflare, as well as configuring NGINX and PM2 for production environments.",
+        "Utilized modern development tools to enhance productivity, including AI-assisted coding tools such as Codex and Cursor for faster development and prototyping",
+      ],
     },
     {
-      title: "Early 2023",
+      title: "Fullstack Engineer Intern at PT DOT Indonesia",
       paragraphs: [
-        "I usually run out of copy, but when I see content this big, I try to integrate lorem ipsum.",
-        "Lorem ipsum is for people who are too lazy to write copy. But we are not. Here are some more example of beautiful designs I built.",
+        "PT DOT Indonesia is a professional digital solutions company that leverages Agile methodologies to support enterprises and startups through high-quality software development services.",
       ],
-      images: [
-        "https://assets.aceternity.com/pro/hero-sections.png",
-        "https://assets.aceternity.com/features-section.png",
-        "https://assets.aceternity.com/pro/bento-grids.png",
-        "https://assets.aceternity.com/cards.png",
-      ],
-      bullets: [],
-    },
-    {
-      title: "Changelog",
-      paragraphs: ["Deployed 5 new components on Aceternity today."],
       images: [
         "https://assets.aceternity.com/pro/hero-sections.png",
         "https://assets.aceternity.com/features-section.png",
@@ -64,11 +60,44 @@ export function ExperiencesSection() {
         "https://assets.aceternity.com/cards.png",
       ],
       bullets: [
-        "Card grid component",
-        "Startup template Aceternity",
-        "Random file upload lol",
-        "Himesh Reshammiya Music CD",
-        "Salman Bhai Fan Club registrations open",
+        "Contributed as a Fullstack Engineer in the development of the Reserv-App, utilizing Laravel (Filament, Livewire), MySQL, and Docker for efficient development environment management.",
+        "Handled daily development tasks including bug fixing, feature implementation, and system optimization to ensure stable application performance.",
+        "Actively participated in daily stand-up meetings to report progress, address blockers, and align on daily development goals with the team.",
+        "Collaborated closely with developers and Quality Assurance (QA) teams to troubleshoot issues, ensuring high-quality deliverables aligned with user requirements.",
+        "Contributed to resolving technical challenges through collaborative problem-solving and innovative approaches, improving overall development efficiency",
+      ],
+    },
+    {
+      title: "Back-end Developer Team",
+      paragraphs: [
+        "Barong (barongsolo.com) is an innovative application for buying and selling recycled waste online, which makes it easier for collectors (tukan rongsok) to operate in collecting rubbish and making it easier for people to sell junk goods. Which It includes real-time chat features, tracking maps, push notifications, and automatic calculations to facilitate the transaction process both sides.",
+      ],
+      images: [],
+      bullets: [
+        "Discussions with the team designed detailed Use Cases, ERDs and Class Diagrams to support overall system requirements comprehensively.",
+        "Together the team designed the application structure and workflow using TypeScript with the Nuxt.Js framework, Vue.Js ensured a scalable and maintainable system on the Barong App project.",
+        "Developing CMS - Barong for Barong Application data management, with Nuxt.Js, Vue.Js, TypeScript.",
+        "Designed and implemented an efficient database schema using Prisma ORM with TypeScript.",
+        "Integrating PostgreeSQL-enabled Supabase for database, storage and authentication on the Barong project.",
+        "Developing reliable and secure RESTful API on Nuxt.Js server side using TypeScript to facilitate smooth interaction frontend on Barong Application and CMS-Barong project.",
+        "Perform maintenance and optimization of existing code to improve performance quality and efficiency system.",
+      ],
+    },
+    {
+      title:
+        "MSIB Red Hat Certified System Administrator - IBM AI & Cybersecurity",
+      paragraphs: [
+        "Infinite Learning, a division of PT Kinema Systrans multimedia (a subsidiary of Infinite Studios), is focused on development vocational training courses relevant to Infinite Studios' activities and the increasing demand for skilled talent in the ecosystem Nongsa Digital Park.",
+      ],
+      images: [],
+      bullets: [
+        "Discussions with the team designed detailed Use Cases, ERDs and Class Diagrams to support overall system requirements comprehensively.",
+        "Together the team designed the application structure and workflow using TypeScript with the Nuxt.Js framework, Vue.Js ensured a scalable and maintainable system on the Barong App project.",
+        "Developing CMS - Barong for Barong Application data management, with Nuxt.Js, Vue.Js, TypeScript.",
+        "Designed and implemented an efficient database schema using Prisma ORM with TypeScript.",
+        "Integrating PostgreeSQL-enabled Supabase for database, storage and authentication on the Barong project.",
+        "Developing reliable and secure RESTful API on Nuxt.Js server side using TypeScript to facilitate smooth interaction frontend on Barong Application and CMS-Barong project.",
+        "Perform maintenance and optimization of existing code to improve performance quality and efficiency system.",
       ],
     },
   ];

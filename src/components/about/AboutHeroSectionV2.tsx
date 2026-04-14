@@ -13,13 +13,13 @@ const aboutHeroV2Content = {
   intro:
     "Discover the journey, mindset, and creative drive that shape every project I take on.",
   displayName: "Hasan",
-  role: "Designer & Front-End Developer Based in Indonesia",
+  role: "Full-Stack Developer Based in Indonesia",
   eyebrow: "About Me",
   heroImage: "/assets/images/photo/my-photo.png",
   heroAlt: "Portrait profile",
   headlineLead:
-    "I'm a multidisciplinary designer and developer with years of experience turning ideas into",
-  headlineMuted: "visual experiences that connect, inspire, and convert.",
+    "I am a Diploma (D3) graduate in Information Systems from Bina Sarana Informatika University",
+  headlineMuted: "with over one year of experience as a Full Stack Developer",
   body: "Every product I craft is rooted in purpose. Whether it is a mobile experience, a visual rebrand, or a complete web presence, I bring empathy, strategy, and clean aesthetics to the table.",
 };
 

@@ -162,14 +162,14 @@ export default function TechStackSection() {
                     <a
                       key={item.title}
                       href={item.href}
-                      className="flex flex-col items-center gap-2 rounded-2xl border border-black/5 bg-white/80 px-3 py-3 text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-muted shadow-sm transition hover:border-orange-200"
+                      className="flex flex-col items-center gap-2 rounded-2xl border border-black/5 bg-white/80 px-3 py-3 text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-muted shadow-sm transition hover:border-black"
                     >
                       <span className="h-6 w-6">{item.icon}</span>
                       {item.title}
                     </a>
                   ))}
                 </div>
-                <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-orange-500 transition-all duration-500 ease-out group-hover:w-full" />
+                <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-black transition-all duration-500 ease-out group-hover:w-full" />
               </motion.div>
             ))}
           </div>
