@@ -11,8 +11,8 @@ import {
 } from "@/lib/animation-templates";
 
 const services = [
-  { label: "FRONTEND DEVELOPMENT" },
-  { label: "UI/UX IMPLEMENTATION" },
+  { label: "FULL-STACK DEVELOPMENT" },
+  // { label: "UI/UX IMPLEMENTATION" },
   { label: "WEB PERFORMANCE" },
   { label: "API INTEGRATION" },
   { label: "SEO Optimization" },

@@ -17,8 +17,8 @@ type FeaturedProject = {
 const featuredProjects: FeaturedProject[] = [
   {
     id: "case-study-01",
-    title: "Quiet Interior Styling",
-    image: "/assets/images/home/image1.jpg",
+    title: "HCI with Payload CMS",
+    image: "/assets/images/work/work-hci.png",
     number: "(01)",
     year: "2024",
     href: "#",
@@ -26,8 +26,8 @@ const featuredProjects: FeaturedProject[] = [
   },
   {
     id: "case-study-02",
-    title: "Warm Dining Corner",
-    image: "/assets/images/home/image2.jpg",
+    title: "ZAN langdin with Payload CMS",
+    image: "/assets/images/work/work-zan.png",
     number: "(02)",
     year: "2024",
     href: "#",
@@ -35,16 +35,24 @@ const featuredProjects: FeaturedProject[] = [
   {
     id: "case-study-03",
     title: "Object Study Collection",
-    image: "/assets/images/home/image3.jpg",
+    image: "/assets/images/work/work-barong.png",
     number: "(03)",
     year: "2023",
     href: "#",
   },
   {
     id: "case-study-04",
-    title: "Crafted Wood Seating",
-    image: "/assets/images/home/image4.jpg",
+    title: "KPI Dashboard",
+    image: "/assets/images/work/work-kpi.png",
     number: "(04)",
+    year: "2023",
+    href: "#",
+  },
+  {
+    id: "case-study-05",
+    title: "Task Management App",
+    image: "/assets/images/work/work-task-management.png",
+    number: "(05)",
     year: "2023",
     href: "#",
   },
@@ -79,7 +87,7 @@ function FeaturedProjectCard({ project }: { project: FeaturedProject }) {
 
           <div className="mt-3 grid grid-cols-[auto_1fr_auto] items-center gap-3 font-text text-[9px] uppercase tracking-[0.18em] text-white/80 sm:text-[10px]">
             <span>{project.number}</span>
-            <span className="text-center">Case Study</span>
+            <span className="text-center">{project.title}</span>
             <span className="text-right">{project.year}</span>
           </div>
         </article>
@@ -97,7 +105,7 @@ function FeaturedProjectCard({ project }: { project: FeaturedProject }) {
 
           <div className="mt-3 grid grid-cols-[auto_1fr_auto] items-center gap-3 font-text text-[9px] uppercase tracking-[0.18em] text-black/68 sm:text-[10px]">
             <span>{project.number}</span>
-            <span className="text-center">Case Study</span>
+            <span className="text-center">{project.title}</span>
             <span className="text-right">{project.year}</span>
           </div>
         </article>

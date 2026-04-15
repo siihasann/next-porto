@@ -36,55 +36,57 @@ export interface CarouselProps {
 
 const DEFAULT_ITEMS: CarouselItem[] = [
   {
-    title: "Text Animations",
-    description: "Cool text animations for your projects.",
+    title: "Landing Pages",
+    description: "uat.humancapabilityinitiative.org",
     id: 1,
     icon: <FiFileText className="h-[16px] w-[16px] text-white" />,
-    imageUrl: "/assets/images/home/image3.jpg",
+    imageUrl: "/assets/images/work/uat.humancapabilityinitiative.org-1.png",
     primaryLink: {
       label: "View Portfolio",
-      href: "https://example.com",
+      href: "https://uat.humancapabilityinitiative.org/en",
     },
   },
   {
-    title: "Animations",
-    description: "Smooth animations for your projects.",
+    title: "Barong Solo",
+    description: "Start up project for local coffee shop",
     id: 2,
     icon: <FiCircle className="h-[16px] w-[16px] text-white" />,
-    imageUrl: "/assets/images/home/image4.jpg",
+    imageUrl: "/assets/images/work/barongsolo.png",
     primaryLink: {
-      label: "GitHub Repo",
-      href: "https://github.com",
+      label: "barongsolo.com",
+      href: "https://barongsolo.com",
     },
   },
   {
-    title: "Components",
-    description: "Reusable components for your projects.",
+    title: "Task Management App",
+    description: "Task management app for team collaboration and productivity.",
     id: 3,
     icon: <FiLayers className="h-[16px] w-[16px] text-white" />,
-    imageUrl: "/assets/images/home/image3.jpg",
+    imageUrl: "/assets/images/work/cc-task.png",
     primaryLink: {
       label: "Case Study",
       href: "https://example.com",
     },
   },
   {
-    title: "Backgrounds",
-    description: "Beautiful backgrounds and patterns for your projects.",
+    title: "Klephone App",
+    description:
+      "Klephone is a dashboard app for monitoring and managing mobile phone stocks and sales.",
     id: 4,
     icon: <FiLayout className="h-[16px] w-[16px] text-white" />,
-    imageUrl: "/assets/images/home/image4.jpg",
+    imageUrl: "/assets/images/work/klephone_app.png",
     primaryLink: {
       label: "View Portfolio",
       href: "https://example.com",
     },
   },
   {
-    title: "Common UI",
-    description: "Common UI components are coming soon!",
+    title: "Zornicare SaaS Dashboard",
+    description:
+      "Saas Daycare dashboard for monitoring and managing daycare operations.",
     id: 5,
     icon: <FiCode className="h-[16px] w-[16px] text-white" />,
-    imageUrl: "assets/images/home/image3.jpg",
+    imageUrl: "assets/images/work/work-zornicare.png",
     primaryLink: {
       label: "GitHub Repo",
       href: "https://github.com",
@@ -141,14 +143,21 @@ function CarouselItem({
       transition={transition}
     >
       {item.imageUrl ? (
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-black">
           <div
-            className="absolute inset-0"
+            className="absolute inset-0 scale-105 opacity-45"
             style={{
               backgroundImage: `url(${item.imageUrl})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
+              filter: "blur(24px)",
             }}
+          />
+          <img
+            src={item.imageUrl}
+            alt={item.title}
+            className="absolute inset-0 h-full w-full object-contain"
+            draggable={false}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/35 to-black/80" />
         </div>
@@ -174,7 +183,13 @@ function CarouselItem({
           </a>
         ) : null} */}
         <div className="flex w-full justify-end">
-          <ExpandableButton text="Get Started" />
+          <ExpandableButton
+            text="Get Started"
+            href={item.primaryLink?.href}
+            target={item.primaryLink ? "_blank" : undefined}
+            rel={item.primaryLink ? "noreferrer" : undefined}
+            className="pointer-events-auto"
+          />
         </div>
       </div>
     </motion.div>
@@ -186,7 +201,7 @@ export default function Carousel({
   baseWidth = 300,
   baseHeight = 360,
   autoplay = false,
-  autoplayDelay = 10000,
+  autoplayDelay = 100000,
   pauseOnHover = false,
   loop = false,
   round = false,

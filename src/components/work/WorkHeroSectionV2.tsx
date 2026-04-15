@@ -5,9 +5,9 @@ import { fadeInUpItem, staggerContainer } from "@/lib/animation-templates";
 
 const workHeroV2Content = {
   title: "WORK",
-  headline: "We Don't Just Create - We Inspire.",
+  headline: "Featured Work",
   description:
-    "In a world full of noise, your brand deserves to stand out. We go beyond creating beautiful designs - we build experiences that connect emotionally, inspire action, and leave a lasting mark. Our mission is simple: to turn your ideas into stories people remember.",
+    "A selection of projects I’ve built, focusing on performance, scalability, and real-world impact.",
   marker: "(07)",
 };
 

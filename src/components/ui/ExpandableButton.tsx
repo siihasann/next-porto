@@ -17,6 +17,8 @@ interface Props {
   href?: string;
   onClick?: () => void;
   className?: string;
+  target?: React.HTMLAttributeAnchorTarget;
+  rel?: string;
 }
 
 export default function SecondButton({
@@ -27,8 +29,12 @@ export default function SecondButton({
   href,
   onClick,
   className = "",
+  target,
+  rel,
 }: Props) {
   const [hover, setHover] = useState(false);
+  const expandedWidth = expand === "both" ? 160 : 150;
+  const collapsedSize = 48;
 
   // ===== Variants styling =====
   const variants = {
@@ -66,79 +72,54 @@ export default function SecondButton({
 
   const V = variants[variant];
 
-  // ===== Expand mode logic =====
-  const expandedWidth = 160;
-  const collapsedSize = 50;
-
-  const width =
-    expand === "right"
-      ? hover
-        ? expandedWidth
-        : collapsedSize
-      : expand === "left"
-        ? hover
-          ? expandedWidth
-          : collapsedSize
-        : expand === "both"
-          ? hover
-            ? expandedWidth
-            : collapsedSize
-          : collapsedSize;
-
-  const justify =
-    expand === "right"
-      ? hover
-        ? "flex-start"
-        : "center"
-      : expand === "left"
-        ? hover
-          ? "flex-end"
-          : "center"
-        : expand === "both"
-          ? "center"
-          : "center";
-
   // ===== Icon logic =====
   const Icon =
     iconMode === "change-direction" && hover ? ArrowUpRight : ArrowRight;
 
-  const Component = href ? "a" : "button";
-
-  return (
-    <Component
-      className={`
+  const rootClassName = `
     relative flex items-center
     rounded-full ${V.bg} ${V.shadow}
     cursor-pointer overflow-hidden
     transition-all duration-500
-  `}
-      style={{
-        width: hover ? 150 : 48,
-        height: 48,
-        paddingLeft: hover ? 20 : 0,
-        paddingRight: hover ? 20 : 0,
-        transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
-      }}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-    >
-      {/* ICON ALWAYS CENTERED */}
+    ${className}
+  `;
+
+  const rootStyle = {
+    width: hover ? expandedWidth : collapsedSize,
+    height: collapsedSize,
+    paddingLeft: hover ? 20 : 0,
+    paddingRight: hover ? 20 : 0,
+    transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
+  } as const;
+
+  const handlePointerDown = (event: React.PointerEvent) => {
+    event.stopPropagation();
+  };
+
+  const sharedProps = {
+    className: rootClassName,
+    style: rootStyle,
+    onClick,
+    onMouseEnter: () => setHover(true),
+    onMouseLeave: () => setHover(false),
+    onPointerDown: handlePointerDown,
+  };
+
+  const content = (
+    <>
       <div
         style={{
           position: "absolute",
           top: "50%",
-          left: hover ? "auto" : "50%", // center when collapsed
-          right: hover ? "20px" : "auto", // move to right on hover
-          transform: hover
-            ? "translateY(-50%)" // no centering horizontally
-            : "translate(-50%, -50%)", // center mode
+          left: hover ? "auto" : "50%",
+          right: hover ? "20px" : "auto",
+          transform: hover ? "translateY(-50%)" : "translate(-50%, -50%)",
           transition: "all 450ms cubic-bezier(0.22, 1, 0.36, 1)",
         }}
       >
         <Icon size={20} strokeWidth={2.5} className={V.icon} />
       </div>
 
-      {/* TEXT APPEARS ON HOVER */}
       <span
         className={`${V.text} font-semibold text-base`}
         style={{
@@ -152,6 +133,20 @@ export default function SecondButton({
       >
         {text}
       </span>
-    </Component>
+    </>
+  );
+
+  if (href) {
+    return (
+      <a href={href} target={target} rel={rel} {...sharedProps}>
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <button type="button" {...sharedProps}>
+      {content}
+    </button>
   );
 }

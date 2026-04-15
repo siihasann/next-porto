@@ -1,14 +1,22 @@
 "use client";
 
 import React, { useState } from "react";
-import { Dribbble, Instagram, Linkedin, Mail } from "lucide-react";
+import { Dribbble, GithubIcon, Instagram, Linkedin, Mail } from "lucide-react";
 import Lanyard from "../ui/Lanyard";
 
 const socials = [
-  { label: "Instagram", href: "https://instagram.com", Icon: Instagram },
-  { label: "LinkedIn", href: "https://linkedin.com", Icon: Linkedin },
-  { label: "Email", href: "mailto:hello@example.com", Icon: Mail },
-  { label: "Dribbble", href: "https://dribbble.com", Icon: Dribbble },
+  {
+    label: "Instagram",
+    href: "https://instagram.com/siihasann",
+    Icon: Instagram,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://linkedin.com/in/siihasann",
+    Icon: Linkedin,
+  },
+  { label: "GitHub", href: "https://github.com/siihasann", Icon: GithubIcon },
+  // { label: "Dribbble", href: "https://dribbble.com", Icon: Dribbble },
 ];
 
 const ContactSection: React.FC = () => {
@@ -88,9 +96,9 @@ const ContactSection: React.FC = () => {
                   Let's Collaborate!
                 </h2>
                 <p className="mx-auto max-w-2xl text-sm leading-relaxed text-gray-400 sm:text-base lg:mx-0 lg:max-w-none lg:text-lg">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua
-                  minim veniam, quis nostrud.
+                  I'm always open to discussing new projects, creative ideas, or
+                  opportunities to be part of your visions. Feel free to reach
+                  out using the form or connect with me on social media!
                 </p>
               </div>
 

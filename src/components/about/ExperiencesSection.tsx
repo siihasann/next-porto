@@ -33,10 +33,10 @@ export function ExperiencesSection() {
         "Crackin'Code Studio is a software development agency based in Semarang, specializing in web and mobile applications, serving international clients across various countries.",
       ],
       images: [
-        "https://assets.aceternity.com/templates/startup-1.webp",
-        "https://assets.aceternity.com/templates/startup-2.webp",
-        "https://assets.aceternity.com/templates/startup-3.webp",
-        "https://assets.aceternity.com/templates/startup-4.webp",
+        // "https://assets.aceternity.com/templates/startup-1.webp",
+        // "https://assets.aceternity.com/templates/startup-2.webp",
+        // "https://assets.aceternity.com/templates/startup-3.webp",
+        // "https://assets.aceternity.com/templates/startup-4.webp",
       ],
       bullets: [
         "Developed and maintained end-to-end web applications for multiple international clients.",
@@ -54,10 +54,10 @@ export function ExperiencesSection() {
         "PT DOT Indonesia is a professional digital solutions company that leverages Agile methodologies to support enterprises and startups through high-quality software development services.",
       ],
       images: [
-        "https://assets.aceternity.com/pro/hero-sections.png",
-        "https://assets.aceternity.com/features-section.png",
-        "https://assets.aceternity.com/pro/bento-grids.png",
-        "https://assets.aceternity.com/cards.png",
+        // "https://assets.aceternity.com/pro/hero-sections.png",
+        // "https://assets.aceternity.com/features-section.png",
+        // "https://assets.aceternity.com/pro/bento-grids.png",
+        // "https://assets.aceternity.com/cards.png",
       ],
       bullets: [
         "Contributed as a Fullstack Engineer in the development of the Reserv-App, utilizing Laravel (Filament, Livewire), MySQL, and Docker for efficient development environment management.",
