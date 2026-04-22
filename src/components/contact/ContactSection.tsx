@@ -82,6 +82,7 @@ const ContactSection: React.FC = () => {
               <Lanyard
                 position={[0, 0, 20]}
                 gravity={[0, -40, 0]}
+                cardImageUrl="/assets/images/photo/my-photo.png"
                 className="h-[600px] sm:h-96 lg:h-[720px]"
               />
             </div>

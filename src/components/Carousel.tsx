@@ -48,10 +48,23 @@ const DEFAULT_ITEMS: CarouselItem[] = [
   },
   {
     title: "Barong Solo",
-    description: "Start up project for local coffee shop",
+    description:
+      "Barong (barongsolo.com) is a mini startup initiative built by my team and me to connect scrap collectors with the community, addressing both economic and environmental challenges. The platform helps reduce unmanaged waste by enabling users to sell recyclable materials efficiently instead of disposing of them improperly.",
     id: 2,
     icon: <FiCircle className="h-[16px] w-[16px] text-white" />,
     imageUrl: "/assets/images/work/barongsolo.png",
+    primaryLink: {
+      label: "barongsolo.com",
+      href: "https://barongsolo.com",
+    },
+  },
+  {
+    title: "CRM Dashboard Barong Solo App",
+    description:
+      "CRM Dashboard for Barong Solo, a mini startup initiative connecting scrap collectors with the community. The dashboard provides tools for managing user, master data, transactions, and reporting.",
+    id: 2,
+    icon: <FiCircle className="h-[16px] w-[16px] text-white" />,
+    imageUrl: "/assets/images/work/cms_barong.png",
     primaryLink: {
       label: "barongsolo.com",
       href: "https://barongsolo.com",
@@ -68,18 +81,18 @@ const DEFAULT_ITEMS: CarouselItem[] = [
       href: "https://example.com",
     },
   },
-  {
-    title: "Klephone App",
-    description:
-      "Klephone is a dashboard app for monitoring and managing mobile phone stocks and sales.",
-    id: 4,
-    icon: <FiLayout className="h-[16px] w-[16px] text-white" />,
-    imageUrl: "/assets/images/work/klephone_app.png",
-    primaryLink: {
-      label: "View Portfolio",
-      href: "https://example.com",
-    },
-  },
+  // {
+  //   title: "Klephone App",
+  //   description:
+  //     "Klephone is a dashboard app for monitoring and managing mobile phone stocks and sales.",
+  //   id: 4,
+  //   icon: <FiLayout className="h-[16px] w-[16px] text-white" />,
+  //   imageUrl: "/assets/images/work/klephone_app.png",
+  //   primaryLink: {
+  //     label: "View Portfolio",
+  //     href: "https://example.com",
+  //   },
+  // },
   {
     title: "Zornicare SaaS Dashboard",
     description:

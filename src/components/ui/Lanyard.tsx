@@ -39,6 +39,86 @@ interface LanyardProps {
   fov?: number;
   transparent?: boolean;
   className?: string;
+  cardImageUrl?: string;
+}
+
+const EMPTY_TEXTURE =
+  "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiLz48L3N2Zz4=";
+
+function createTrimmedCanvas(image: HTMLImageElement | HTMLCanvasElement) {
+  const sourceCanvas = document.createElement("canvas");
+  sourceCanvas.width = image.width;
+  sourceCanvas.height = image.height;
+
+  const sourceContext = sourceCanvas.getContext("2d");
+  if (!sourceContext) return null;
+
+  sourceContext.drawImage(image, 0, 0);
+
+  const { data, width, height } = sourceContext.getImageData(
+    0,
+    0,
+    sourceCanvas.width,
+    sourceCanvas.height,
+  );
+
+  let top = height;
+  let left = width;
+  let right = 0;
+  let bottom = 0;
+
+  for (let y = 0; y < height; y += 1) {
+    for (let x = 0; x < width; x += 1) {
+      const alpha = data[(y * width + x) * 4 + 3];
+
+      if (alpha <= 12) continue;
+
+      if (x < left) left = x;
+      if (x > right) right = x;
+      if (y < top) top = y;
+      if (y > bottom) bottom = y;
+    }
+  }
+
+  if (left > right || top > bottom) return null;
+
+  const trimmedCanvas = document.createElement("canvas");
+  trimmedCanvas.width = right - left + 1;
+  trimmedCanvas.height = bottom - top + 1;
+
+  const trimmedContext = trimmedCanvas.getContext("2d");
+  if (!trimmedContext) return null;
+
+  trimmedContext.drawImage(
+    sourceCanvas,
+    left,
+    top,
+    trimmedCanvas.width,
+    trimmedCanvas.height,
+    0,
+    0,
+    trimmedCanvas.width,
+    trimmedCanvas.height,
+  );
+
+  return trimmedCanvas;
+}
+
+function createTrimmedPhotoTexture(
+  image: HTMLImageElement | HTMLCanvasElement,
+) {
+  const trimmedCanvas = createTrimmedCanvas(image);
+  if (!trimmedCanvas) return null;
+  const texture = new THREE.CanvasTexture(trimmedCanvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.anisotropy = 8;
+  texture.needsUpdate = true;
+
+  return {
+    texture,
+    width: trimmedCanvas.width,
+    height: trimmedCanvas.height,
+  };
 }
 
 export default function Lanyard({
@@ -47,6 +127,7 @@ export default function Lanyard({
   fov = 20,
   transparent = true,
   className,
+  cardImageUrl,
 }: LanyardProps) {
   const [isMobile, setIsMobile] = useState(() => {
     return typeof window !== "undefined" && window.innerWidth < 768;
@@ -75,7 +156,7 @@ export default function Lanyard({
         <ambientLight intensity={Math.PI} />
 
         <Physics gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60}>
-          <Band isMobile={isMobile} />
+          <Band isMobile={isMobile} cardImageUrl={cardImageUrl} />
         </Physics>
 
         <Environment blur={0.75}>
@@ -116,12 +197,19 @@ interface BandProps {
   maxSpeed?: number;
   minSpeed?: number;
   isMobile?: boolean;
+  cardImageUrl?: string;
 }
 
-function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }: BandProps) {
+function Band({
+  maxSpeed = 50,
+  minSpeed = 0,
+  isMobile = false,
+  cardImageUrl,
+}: BandProps) {
   // load model + texture inside component
   const { nodes, materials } = useGLTF("/assets/lanyard/card.glb") as any;
   const texture = useTexture("/assets/lanyard/lanyard.png");
+  const cardImageTexture = useTexture(cardImageUrl || EMPTY_TEXTURE);
 
   // refs
   const band = useRef<any>(null);
@@ -156,10 +244,66 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }: BandProps) {
 
   const [dragged, drag] = useState<false | THREE.Vector3>(false);
   const [hovered, hover] = useState(false);
+  const [photoMap, setPhotoMap] = useState<{
+    texture: THREE.Texture;
+    width: number;
+    height: number;
+  } | null>(null);
 
   // ensure texture repeats
   if (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  }
+
+  if (cardImageTexture) {
+    cardImageTexture.colorSpace = THREE.SRGBColorSpace;
+    cardImageTexture.anisotropy = 8;
+  }
+
+  useEffect(() => {
+    if (!cardImageUrl || !cardImageTexture?.image) {
+      setPhotoMap(null);
+      return;
+    }
+
+    const nextPhoto = createTrimmedPhotoTexture(
+      cardImageTexture.image as HTMLImageElement | HTMLCanvasElement,
+    );
+
+    setPhotoMap((current) => {
+      if (
+        current &&
+        current.texture !== materials.base.map &&
+        current.texture !== cardImageTexture
+      ) {
+        current.texture.dispose();
+      }
+
+      return nextPhoto;
+    });
+  }, [cardImageTexture, cardImageUrl, materials.base.map]);
+
+  useEffect(() => {
+    return () => {
+      if (
+        photoMap &&
+        photoMap.texture !== materials.base.map &&
+        photoMap.texture !== cardImageTexture
+      ) {
+        photoMap.texture.dispose();
+      }
+    };
+  }, [cardImageTexture, materials.base.map, photoMap]);
+
+  const photoAspect = photoMap ? photoMap.width / photoMap.height : 0.56;
+  const maxPhotoWidth = 0.38;
+  const maxPhotoHeight = 0.58;
+  let photoWidth = maxPhotoWidth;
+  let photoHeight = photoWidth / photoAspect;
+
+  if (photoHeight > maxPhotoHeight) {
+    photoHeight = maxPhotoHeight;
+    photoWidth = photoHeight * photoAspect;
   }
 
   // joints
@@ -278,6 +422,30 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }: BandProps) {
                 metalness={0.8}
               />
             </mesh>
+
+            {photoMap ? (
+              <>
+                <mesh position={[0, 0.5, 0.011]} renderOrder={1}>
+                  <planeGeometry args={[0.68, 0.94]} />
+                  <meshStandardMaterial
+                    color="#f2f1eb"
+                    roughness={0.8}
+                    metalness={0.02}
+                  />
+                </mesh>
+
+                <mesh position={[0, 0.31, 0.013]} renderOrder={2}>
+                  <planeGeometry args={[photoWidth, photoHeight]} />
+                  <meshStandardMaterial
+                    map={photoMap.texture}
+                    transparent
+                    alphaTest={0.06}
+                    roughness={0.76}
+                    metalness={0.03}
+                  />
+                </mesh>
+              </>
+            ) : null}
 
             <mesh geometry={nodes.clip.geometry} material={materials.metal} />
 
