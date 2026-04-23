@@ -17,6 +17,9 @@ export interface CarouselItem {
   id: number;
   icon: React.ReactNode;
   imageUrl?: string;
+  compactImageFit?: "contain" | "cover";
+  compactImagePosition?: string;
+  compactImageScale?: number;
   primaryLink?: {
     label: string;
     href: string;
@@ -41,6 +44,8 @@ const DEFAULT_ITEMS: CarouselItem[] = [
     id: 1,
     icon: <FiFileText className="h-[16px] w-[16px] text-white" />,
     imageUrl: "/assets/images/work/uat.humancapabilityinitiative.org-1.png",
+    compactImageFit: "contain",
+    compactImagePosition: "center",
     primaryLink: {
       label: "View Portfolio",
       href: "https://uat.humancapabilityinitiative.org/en",
@@ -53,6 +58,8 @@ const DEFAULT_ITEMS: CarouselItem[] = [
     id: 2,
     icon: <FiCircle className="h-[16px] w-[16px] text-white" />,
     imageUrl: "/assets/images/work/barongsolo.png",
+    compactImageFit: "contain",
+    compactImagePosition: "center",
     primaryLink: {
       label: "barongsolo.com",
       href: "https://barongsolo.com",
@@ -65,6 +72,8 @@ const DEFAULT_ITEMS: CarouselItem[] = [
     id: 2,
     icon: <FiCircle className="h-[16px] w-[16px] text-white" />,
     imageUrl: "/assets/images/work/cms_barong.png",
+    compactImageFit: "contain",
+    compactImagePosition: "center",
     primaryLink: {
       label: "barongsolo.com",
       href: "https://barongsolo.com",
@@ -76,6 +85,8 @@ const DEFAULT_ITEMS: CarouselItem[] = [
     id: 3,
     icon: <FiLayers className="h-[16px] w-[16px] text-white" />,
     imageUrl: "/assets/images/work/cc-task.png",
+    compactImageFit: "contain",
+    compactImagePosition: "center",
     primaryLink: {
       label: "Case Study",
       href: "https://example.com",
@@ -99,7 +110,10 @@ const DEFAULT_ITEMS: CarouselItem[] = [
       "Saas Daycare dashboard for monitoring and managing daycare operations.",
     id: 5,
     icon: <FiCode className="h-[16px] w-[16px] text-white" />,
-    imageUrl: "assets/images/work/work-zornicare.png",
+    imageUrl: "/assets/images/work/work-zornicare.png",
+    compactImageFit: "contain",
+    compactImagePosition: "center",
+    compactImageScale: 0.92,
     primaryLink: {
       label: "GitHub Repo",
       href: "https://github.com",
@@ -138,6 +152,16 @@ function CarouselItem({
   ];
   const outputRange = [90, 0, -90];
   const rotateY = useTransform(x, range, outputRange, { clamp: false });
+  const isCompact = !round && itemWidth <= 340;
+  const compactImageFit = item.compactImageFit ?? "contain";
+  const compactImagePosition =
+    item.compactImagePosition ?? (compactImageFit === "contain" ? "center" : "center top");
+  const compactImageScale =
+    item.compactImageScale ?? (compactImageFit === "contain" ? 0.96 : 1);
+  const compactImageClass =
+    compactImageFit === "contain"
+      ? "max-h-full max-w-full object-contain"
+      : "h-full w-full object-cover";
 
   return (
     <motion.div
@@ -145,7 +169,9 @@ function CarouselItem({
       className={`relative box-border shrink-0 flex h-full flex-col ${
         round
           ? "items-center justify-center text-center bg-[#060010] border-0"
-          : "items-start justify-between bg-[#222] border border-[#222] rounded-[12px]"
+          : isCompact
+            ? "items-start justify-start bg-[#222] border border-[#222] rounded-[12px]"
+            : "items-start justify-between bg-[#222] border border-[#222] rounded-[12px]"
       } overflow-hidden cursor-grab active:cursor-grabbing`}
       style={{
         width: itemWidth,
@@ -156,33 +182,90 @@ function CarouselItem({
       transition={transition}
     >
       {item.imageUrl ? (
-        <div className="absolute inset-0 bg-black">
-          <div
-            className="absolute inset-0 scale-105 opacity-45"
-            style={{
-              backgroundImage: `url(${item.imageUrl})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              filter: "blur(24px)",
-            }}
-          />
-          <img
-            src={item.imageUrl}
-            alt={item.title}
-            className="absolute inset-0 h-full w-full object-contain"
-            draggable={false}
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/35 to-black/80" />
-        </div>
+        isCompact ? (
+          <div className="w-full shrink-0 px-5 pt-5">
+            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[20px] border border-white/6 bg-[#141414]">
+              {compactImageFit === "contain" ? (
+                <div className="absolute inset-0 flex items-center justify-center p-3 sm:p-4">
+                  <img
+                    src={item.imageUrl}
+                    alt={item.title}
+                    className={compactImageClass}
+                    style={{
+                      objectPosition: compactImagePosition,
+                      transform: `scale(${compactImageScale})`,
+                      transformOrigin: "center",
+                    }}
+                    draggable={false}
+                  />
+                </div>
+              ) : (
+                <img
+                  src={item.imageUrl}
+                  alt={item.title}
+                  className={compactImageClass}
+                  style={{ objectPosition: compactImagePosition }}
+                  draggable={false}
+                />
+              )}
+              <div className="absolute inset-0 rounded-[20px] ring-1 ring-inset ring-white/4" />
+            </div>
+          </div>
+        ) : (
+          <div className="absolute inset-0 bg-black">
+            <div
+              className="absolute inset-0 scale-105 opacity-45"
+              style={{
+                backgroundImage: `url(${item.imageUrl})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                filter: "blur(24px)",
+              }}
+            />
+            <img
+              src={item.imageUrl}
+              alt={item.title}
+              className="absolute inset-0 h-full w-full object-contain"
+              draggable={false}
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/35 to-black/80" />
+          </div>
+        )
       ) : null}
-      <div className={`${round ? "p-0 m-0" : "relative mb-4 p-5"}`}>
+      <div
+        className={`${
+          round
+            ? "m-0 p-0"
+            : isCompact
+              ? "relative shrink-0 px-5 pb-0 pt-4"
+              : "relative mb-4 p-5"
+        }`}
+      >
         <span className="flex h-[28px] w-[28px] items-center justify-center rounded-full bg-[#060010]">
           {item.icon}
         </span>
       </div>
-      <div className="relative p-5 w-full">
-        <div className="mb-1 font-heading text-xl text-white">{item.title}</div>
-        <p className="text-base font-text text-white/90">{item.description}</p>
+      <div
+        className={`relative w-full ${
+          isCompact ? "flex min-h-0 flex-1 flex-col px-5 pb-5 pt-4" : "p-5"
+        }`}
+      >
+        <div
+          className={`font-heading text-white ${
+            isCompact ? "mb-3 text-[1.35rem] leading-[1.12] tracking-[-0.03em]" : "mb-1 text-xl"
+          }`}
+        >
+          {item.title}
+        </div>
+        <p
+          className={`font-text text-white/90 ${
+            isCompact
+              ? "text-sm leading-6 [display:-webkit-box] overflow-hidden [-webkit-box-orient:vertical] [-webkit-line-clamp:4]"
+              : "text-base"
+          }`}
+        >
+          {item.description}
+        </p>
 
         {/* {item.primaryLink ? (
           <a
@@ -195,7 +278,9 @@ function CarouselItem({
             <span className="text-orange-200">→</span>
           </a>
         ) : null} */}
-        <div className="flex w-full justify-end">
+        <div
+          className={`flex w-full ${isCompact ? "mt-auto pt-5 justify-start" : "justify-end"}`}
+        >
           <ExpandableButton
             text="Get Started"
             href={item.primaryLink?.href}
@@ -219,7 +304,7 @@ export default function Carousel({
   loop = false,
   round = false,
 }: CarouselProps): JSX.Element {
-  const containerPadding = 24;
+  const containerPadding = !round && baseWidth <= 360 ? 16 : 24;
   const itemWidth = baseWidth - containerPadding * 2;
   const trackItemOffset = itemWidth + GAP;
   const itemsForRender = useMemo(() => {

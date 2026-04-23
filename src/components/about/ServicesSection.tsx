@@ -53,7 +53,7 @@ export default function ServicesSection() {
       if (viewportWidth < 640) {
         setCarouselSize({
           width: Math.min(360, viewportWidth - 32),
-          height: 360,
+          height: 480,
         });
         return;
       }
@@ -195,7 +195,10 @@ export default function ServicesSection() {
         variants={smoothRevealItem}
         custom={1}
       >
-        <div className="relative h-[360px] sm:h-[480px] lg:h-[600px]">
+        <div
+          className="relative sm:h-[480px] lg:h-[600px]"
+          style={{ height: `${carouselSize.height}px` }}
+        >
           <Carousel
             baseWidth={carouselSize.width}
             baseHeight={carouselSize.height}
