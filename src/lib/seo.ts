@@ -63,18 +63,18 @@ export function createPageMetadata({
     description,
     keywords: [...siteConfig.keywords, ...keywords],
     alternates: {
-      canonical: path,
+      canonical: absoluteUrl(path),
     },
     openGraph: {
       title: fullTitle,
       description,
-      url: path,
+      url: absoluteUrl(path),
       siteName: siteConfig.siteName,
       locale: siteConfig.locale,
       type: "website",
       images: [
         {
-          url: siteConfig.ogImagePath,
+          url: absoluteUrl(siteConfig.ogImagePath),
           width: 1200,
           height: 630,
           alt: `${siteConfig.siteName} share image`,
@@ -85,7 +85,7 @@ export function createPageMetadata({
       card: "summary_large_image",
       title: fullTitle,
       description,
-      images: [siteConfig.twitterImagePath],
+      images: [absoluteUrl(siteConfig.twitterImagePath)],
     },
   };
 }

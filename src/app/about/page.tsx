@@ -1,9 +1,5 @@
 import type { Metadata } from "next";
-import AboutHeroSectionV2 from "@/components/about/AboutHeroSectionV2";
-import { ExperiencesSection } from "@/components/about/ExperiencesSection";
-import ServicesSection from "@/components/about/ServicesSection";
-import Footer from "@/components/layout/Footer";
-import Navbar from "@/components/layout/Navbar";
+import AboutPageContent from "@/components/about/AboutPageContent";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -15,15 +11,5 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 export default function About() {
-  return (
-    <div className="min-h-screen">
-      <Navbar />
-      <main className="mx-auto w-full px-4 pb-16 pt-8 sm:px-8 lg:px-20">
-        <AboutHeroSectionV2 />
-        <ServicesSection />
-        <ExperiencesSection />
-      </main>
-      <Footer />
-    </div>
-  );
+  return <AboutPageContent />;
 }

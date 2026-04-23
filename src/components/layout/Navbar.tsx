@@ -15,9 +15,18 @@ const rightItems = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const isAboutPath = pathname === "/" || pathname === "/about";
+
+  const isActive = (href: string) => {
+    if (href === "/about") {
+      return isAboutPath;
+    }
+
+    return pathname === href;
+  };
 
   const itemClass = (href: string, disabled?: boolean) =>
-    `nav-link${!disabled && pathname === href ? " is-active" : ""}${
+    `nav-link${!disabled && isActive(href) ? " is-active" : ""}${
       disabled ? " pointer-events-none opacity-60" : ""
     }`;
 
@@ -60,7 +69,7 @@ export default function Navbar() {
         key={href}
         className={itemClass(href, disabled)}
         href={href}
-        aria-current={pathname === href ? "page" : undefined}
+        aria-current={isActive(href) ? "page" : undefined}
       >
         {content}
       </Link>

@@ -3,7 +3,7 @@ import { Manrope, Sora } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import PageTransition from "@/components/PageTransition";
-import { personStructuredData, siteConfig, siteUrl } from "@/lib/seo";
+import { absoluteUrl, personStructuredData, siteConfig, siteUrl } from "@/lib/seo";
 
 const sora = Sora({
   variable: "--font-display",
@@ -52,13 +52,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: siteConfig.title,
     description: siteConfig.description,
-    url: siteUrl,
+    url: absoluteUrl("/"),
     siteName: siteConfig.siteName,
     locale: siteConfig.locale,
     type: "website",
     images: [
       {
-        url: siteConfig.ogImagePath,
+        url: absoluteUrl(siteConfig.ogImagePath),
         width: 1200,
         height: 630,
         alt: `${siteConfig.siteName} share image`,
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.title,
     description: siteConfig.description,
-    images: [siteConfig.twitterImagePath],
+    images: [absoluteUrl(siteConfig.twitterImagePath)],
   },
 };
 
