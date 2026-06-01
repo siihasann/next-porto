@@ -48,7 +48,7 @@ const DEFAULT_ITEMS: CarouselItem[] = [
     compactImagePosition: "center",
     primaryLink: {
       label: "View Portfolio",
-      href: "https://uat.humancapabilityinitiative.org/en",
+      href: "",
     },
   },
   {
@@ -89,7 +89,7 @@ const DEFAULT_ITEMS: CarouselItem[] = [
     compactImagePosition: "center",
     primaryLink: {
       label: "Case Study",
-      href: "https://example.com",
+      href: "",
     },
   },
   // {
@@ -116,7 +116,7 @@ const DEFAULT_ITEMS: CarouselItem[] = [
     compactImageScale: 0.92,
     primaryLink: {
       label: "GitHub Repo",
-      href: "https://github.com",
+      href: "",
     },
   },
 ];
@@ -155,7 +155,8 @@ function CarouselItem({
   const isCompact = !round && itemWidth <= 340;
   const compactImageFit = item.compactImageFit ?? "contain";
   const compactImagePosition =
-    item.compactImagePosition ?? (compactImageFit === "contain" ? "center" : "center top");
+    item.compactImagePosition ??
+    (compactImageFit === "contain" ? "center" : "center top");
   const compactImageScale =
     item.compactImageScale ?? (compactImageFit === "contain" ? 0.96 : 1);
   const compactImageClass =
@@ -252,7 +253,9 @@ function CarouselItem({
       >
         <div
           className={`font-heading text-white ${
-            isCompact ? "mb-3 text-[1.35rem] leading-[1.12] tracking-[-0.03em]" : "mb-1 text-xl"
+            isCompact
+              ? "mb-3 text-[1.35rem] leading-[1.12] tracking-[-0.03em]"
+              : "mb-1 text-xl"
           }`}
         >
           {item.title}
@@ -495,10 +498,10 @@ export default function Carousel({
                 activeIndex === index
                   ? round
                     ? "bg-white"
-                    : "bg-[#333333]"
+                    : "bg-[#676565]"
                   : round
-                    ? "bg-[#555]"
-                    : "bg-[rgba(51,51,51,0.4)]"
+                    ? "bg-[#959595]"
+                    : "bg-[rgba(102,102,102,0.4)]"
               }`}
               animate={{
                 scale: activeIndex === index ? 1.2 : 1,
